@@ -17,3 +17,6 @@ Seuraavalla viikolla yritän ainakin varmiistaa, että logiikka toimii
 ja jos painajaiseni käyvät toteen uudelleen kirjoitan sen 600 riviä if-lauseita.
 Mutta sen jälkeen teen yksinkertaisen käyttöliittymän jolla shakkia voi testata (ja pelata?).
 Kaikkein intohimoisin tavoite olisi saada kaikki niin kuntoon, että AI:n tekemisen voisi aloittaa suoraan seuraavan viikon jälkeen.
+
+
+Tunteja meni tällä viikolla yhteensä 8 ja niistä varmaan 6-7 meni logiikkaan. Loppu aikana tein pari testiä, shakkilaudan, suunnittelin rakennetta (tein paketteja ja toistaiseksi tyhjiä luokkia) ja vielä 'Move' luokan.

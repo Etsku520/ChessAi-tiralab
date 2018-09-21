@@ -8,7 +8,7 @@ public class ChessBoard {
    private int[][] board;
 
     public ChessBoard() {
-        this.board = new int[12][12];
+        this.board = new int[9][9];
         
         this.reset();
         
@@ -19,6 +19,7 @@ public class ChessBoard {
      */
     public void reset() {
         int[] pieces = {4, 2, 3, 5, 6, 3, 2, 4};
+        this.board = new int[9][9];
         
          for(int i = 1; i < 9; i++) {
             this.board[1][i] = pieces[i-1];

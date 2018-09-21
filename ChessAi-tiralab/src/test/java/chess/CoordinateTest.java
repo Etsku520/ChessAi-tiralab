@@ -5,10 +5,7 @@
  */
 package chess;
 
-import chessaitiralab.chessai.tiralab.chess.ChessBoard;
 import chessaitiralab.chessai.tiralab.chess.Coordinate;
-import chessaitiralab.chessai.tiralab.chess.Move;
-
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -20,10 +17,9 @@ import static org.junit.Assert.*;
  *
  * @author hceetu
  */
-public class ChessBoardTest {
-    ChessBoard board;
+public class CoordinateTest {
     
-    public ChessBoardTest() {
+    public CoordinateTest() {
     }
     
     @BeforeClass
@@ -36,7 +32,6 @@ public class ChessBoardTest {
     
     @Before
     public void setUp() {
-        board = new ChessBoard();
     }
     
     @After
@@ -50,23 +45,32 @@ public class ChessBoardTest {
     // public void hello() {}
     
     @Test
-    public void movement1Test() {
-        board.movePiece(new Move(new Coordinate(12), new Coordinate(54)));
-        assertTrue((board.getBoard()[4][5] == 1));
-    }
-    
-    @Test
-    public void movedPieceDoesntStayTest() {
-        board.movePiece(new Move(new Coordinate(12), new Coordinate(54)));
-        assertTrue(board.getBoard()[2][1] == 0);
-    }
-    
-    @Test
-    public void resetMaybeTest() {
-        board.movePiece(new Move(new Coordinate(12), new Coordinate(54)));
-        board.reset();
+    public void getXTest() {
+        Coordinate cood = new Coordinate("b4");
         
-        assertTrue(board.getBoard()[4][5] == 0);
-        assertTrue(board.getBoard()[2][1] == 1);
+        assertEquals(2, cood.getX());
     }
+    
+    @Test
+    public void getYTest() {
+        Coordinate cood = new Coordinate("b4");
+        
+        assertEquals(4, cood.getY());
+    }
+    
+    @Test
+    public void toStringTest() {
+        Coordinate cood = new Coordinate("b4");
+        
+        assertEquals("b4", cood.toString());
+    }
+    
+    @Test
+    public void intConstructorTest() {
+        Coordinate cood = new Coordinate(24);
+        
+        assertEquals("b4", cood.toString());
+    }
+    
 }
+

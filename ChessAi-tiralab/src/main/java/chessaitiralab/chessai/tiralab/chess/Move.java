@@ -11,32 +11,28 @@ package chessaitiralab.chessai.tiralab.chess;
  * @author hceetu
  */
 public class Move {
-    private int ya;
-    private int xa;
-    private int yl;
-    private int xl;
+    private Coordinate coodA;
+    private Coordinate coodL;
 
-    public Move(int ya, int xa, int yl, int xl) {
-        this.ya = ya;
-        this.xa = xa;
-        this.yl = yl;
-        this.xl = xl;
+    public Move(Coordinate a, Coordinate l) {
+        coodA = a;
+        coodL = l;
     }
 
     public int getYa() {
-        return ya;
+        return coodA.getY();
     }
 
     public int getXa() {
-        return xa;
+        return coodA.getX();
     }
 
     public int getYl() {
-        return yl;
+        return coodL.getY();
     }
 
     public int getXl() {
-        return xl;
+        return coodL.getX();
     }
     
     

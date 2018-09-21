@@ -50,9 +50,5 @@ public class ChessLogicTest {
     // @Test
     // public void hello() {}
     
-    @Test
-    public void pawnMovementTest() {
-        assertTrue(!logic.checkMove(new Move(5, 4, 5, 4), board, 1));
-    }
     
 }

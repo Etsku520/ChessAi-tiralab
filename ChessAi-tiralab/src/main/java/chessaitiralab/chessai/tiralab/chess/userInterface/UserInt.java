@@ -57,11 +57,8 @@ public class UserInt {
         ChessLogic logic = new ChessLogic();
         
         board.reset();
-        board.movePiece(new Move(new Coordinate("d8"), new Coordinate("f2")));
         System.out.println("Let the chess begin (btw king is now monarch because 'k' was taken by knight)");
         drawBoard();
-        System.out.println(logic.checkYourCheck(new Move(new Coordinate(22), new Coordinate(23)), board));
-        
         
         while (true) {
             logic.pawnQueens(board);

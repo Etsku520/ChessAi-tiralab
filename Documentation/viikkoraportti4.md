@@ -11,3 +11,6 @@ Selkeitä ongelmia ei tule mieleen, eli niitä tuskin on nyt.
 Seuraavaksi jatkan ensisijaisesti tekoälyn kehittämistä. Kun joskus saan sen hyvään kuntoon,
 niin hion pelin todennäköisesti oikeasti pelattavaksi. Sen jälkeen voin vielä miettiä optimointia, mutta
 näistä tuskin kaikki tulee tapahtumaan seuraavalla viikolla.
+
+
+Tunteja meni tällä viikolla 10, joista suurin osa meni tekoälyyn.

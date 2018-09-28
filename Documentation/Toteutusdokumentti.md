@@ -6,7 +6,7 @@ apuluokkia kordinaatti ja liike.
 Aika hirvittävätlä näyttää, tekoäly tekee puuta kaikista liikkeistä joten sen aika vaativuus on luokkaa k^n, missä
 k esittää liikkeiden määrää ja n on kerroksien määrä. Kertoimia tulee melko hirveästi lisää, 
 koska ohjelma ei ole optimoinnista ikinä kuullutkaan. 
-Tällä hetkellä ohjelma pystyy simuloimaan 3 vuoroa eteenpäin ennen kuin jää jumiin.
+Tällä hetkellä ohjelma pystyy simuloimaan 4 vuoroa eteenpäin ennen kuin jää jumiin.
 
 Tilavaativuus on lähellä samaa, mutta vielä hirveämpi. Koska sen pitää ensinnäkin tallentaa puu 
 joka on saman kokoinen kuin aikavaativuus. Sen lisäksi jokaiseen solmuun on tallennettu oman tilanteen shakkilauta. 

@@ -1,10 +1,12 @@
 package chessaitiralab.chessai.tiralab.chess.userInterface;
 
-import chessaitiralab.chessai.tiralab.DataStructure.BetterList;
+import chessaitiralab.chessai.tiralab.ai.ChessAi;
+import chessaitiralab.chessai.tiralab.dataStructure.BetterList;
 import chessaitiralab.chessai.tiralab.chess.ChessBoard;
 import chessaitiralab.chessai.tiralab.chess.ChessLogic;
 import chessaitiralab.chessai.tiralab.chess.Coordinate;
 import chessaitiralab.chessai.tiralab.chess.Move;
+import chessaitiralab.chessai.tiralab.dataStructure.BetterTree;
 import java.util.Scanner;
 
 /**
@@ -55,24 +57,30 @@ public class UserInt {
      */
     public void game() {
         ChessLogic logic = new ChessLogic();
+        ChessAi bot = new ChessAi(new BetterTree(board, 0, 0), board, logic, 0);
         
         board.reset();
         System.out.println("Let the chess begin (btw king is now monarch because 'k' was taken by knight)");
+        Coordinate cood1 = new Coordinate("d8");
+        Coordinate cood2 = new Coordinate("e3");
+        Move move2 = new Move(cood1, cood2);
+        board.movePiece(move2);
         drawBoard();
         
         while (true) {
             logic.pawnQueens(board);
-            
-            System.out.println("What do you want to move? (for example 'a2')");
-            String coordinate = reader.nextLine();
-            String test1 = "abcdefgh";
-            String test2 = "12345678";
-            
-            if(coordinate.trim().toLowerCase().equals("stop")) {
-                break;
-            }
+            drawBoard();
             
             while (true) {
+                System.out.println("What do you want to move? (for example 'a2')");
+                String coordinate = reader.nextLine();
+                String test1 = "abcdefgh";
+                String test2 = "12345678";
+
+                if(coordinate.trim().toLowerCase().equals("stop")) {
+                    break;
+                }
+                
                 if (coordinate.length() == 2 && test1.contains(coordinate.substring(0, 1)) 
                         && test2.contains(coordinate.substring(1, 2))) {
                     Coordinate cood = new Coordinate(coordinate);
@@ -86,19 +94,14 @@ public class UserInt {
                     } catch (Exception e) {
                         System.out.println("That is no number");
                     }
-
-                    if (number == 0) {
-                        break;
-                    }
                     
-                    if (number < 0) {
+                    if (number <= 0) {
                         continue;
                     }
 
                     if (number <= moveList.size()) {
                         Move move = new Move(cood, (Coordinate) moveList.get(number - 1));
                         board.movePiece(move);
-                        drawBoard();
                         break;
                     } else {
                         System.out.println("index out of bounds");
@@ -108,6 +111,13 @@ public class UserInt {
                     System.out.println("Not a valid coordinate\n");
                 }
             }
+            
+            Move move = bot.nextMove();
+            
+            System.out.println(move.getCoodA());
+            System.out.println(move.getCoodL());
+            
+            board.movePiece(move);
             
         }
     }

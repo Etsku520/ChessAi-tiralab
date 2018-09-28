@@ -1,4 +1,4 @@
-package chessaitiralab.chessai.tiralab.DataStructure;
+package chessaitiralab.chessai.tiralab.dataStructure;
 
 /**
  * This is a  list for the times I need a list.

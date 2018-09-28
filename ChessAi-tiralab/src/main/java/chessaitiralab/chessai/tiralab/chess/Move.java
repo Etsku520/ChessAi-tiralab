@@ -34,6 +34,14 @@ public class Move {
     public int getXl() {
         return coodL.getX();
     }
+
+    public Coordinate getCoodA() {
+        return coodA;
+    }
+
+    public Coordinate getCoodL() {
+        return coodL;
+    }
     
     
 }

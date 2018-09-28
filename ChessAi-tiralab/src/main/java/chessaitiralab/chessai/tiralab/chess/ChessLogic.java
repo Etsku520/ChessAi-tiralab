@@ -1,7 +1,7 @@
 package chessaitiralab.chessai.tiralab.chess;
 
 import static java.lang.Math.abs;
-import chessaitiralab.chessai.tiralab.DataStructure.BetterList;
+import chessaitiralab.chessai.tiralab.dataStructure.BetterList;
 
 /**
  * This class tells us if something is allowed or if king is in check
@@ -47,27 +47,27 @@ public class ChessLogic {
             return this.checkKing(cood, board);
         }
 
-        if (piece == 11 && player == 2) {
+        if (piece == 11 && player == 0) {
             return this.checkPawn(cood, board);
         }
 
-        if (piece == 12 && player == 2) {
+        if (piece == 12 && player == 0) {
             return this.checkKnight(cood, board);
         }
 
-        if (piece == 13 && player == 2) {
+        if (piece == 13 && player == 0) {
             return this.checkBishop(cood, board);
         }
 
-        if (piece == 14 && player == 2) {
+        if (piece == 14 && player == 0) {
             return this.checkRook(cood, board);
         }
 
-        if (piece == 15 && player == 2) {
+        if (piece == 15 && player == 0) {
             return this.checkQueen(cood, board);
         }
 
-        if (piece == 16 && player == 2) {
+        if (piece == 16 && player == 0) {
             return this.checkKing(cood, board);
         }
 
@@ -116,7 +116,7 @@ public class ChessLogic {
 
         } else {
             if (board.getBoard()[cood.getY() - 1][cood.getX()] == 0) {
-                moveList.add(new Coordinate((cood.getY() - 1) * 10 + cood.getX()));
+                moveList.add(new Coordinate((cood.getY() - 1) + cood.getX() * 10));
                 if (cood.getY() == 7 && board.getBoard()[cood.getY() - 2][cood.getX()] == 0) {
                     if (!checkYourCheck(new Move(cood, new Coordinate((cood.getY() - 2) + (cood.getX()) * 10)), board)) {
                         moveList.add(new Coordinate((cood.getY() - 2) + cood.getX() * 10));
@@ -468,7 +468,7 @@ public class ChessLogic {
         BetterList rookList = checkRook(cood, board);
 
         for (int i = 0; i < rookList.size(); i++) {
-            moveList.add(rookList.get(i));
+            moveList.add((Coordinate) rookList.get(i));
         }
 
         return moveList;
@@ -1123,5 +1123,27 @@ public class ChessLogic {
                 board.getBoard()[1][i] = 15;
             }
         }
+    }
+    
+    /**
+     * Returns true if the player is in checkmate
+     * 
+     * @param board
+     * @param player
+     * @return true if in checkmate
+     */
+    public boolean checkMate(ChessBoard board, int player) {
+        for (int i = 1; i < 9; i++) {
+            for (int j = 1; j < 9; j++) {
+                Coordinate cood = new Coordinate (j * 10 + i);
+                BetterList endCoods = checkMove(cood, board, player);
+                
+                if (endCoods.size() != 0) {
+                    return false;
+                }
+            }
+        }
+        
+        return true;
     }
 }

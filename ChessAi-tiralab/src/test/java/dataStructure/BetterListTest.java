@@ -1,7 +1,7 @@
 
-package DataStructure;
+package dataStructure;
 
-import chessaitiralab.chessai.tiralab.DataStructure.BetterList;
+import chessaitiralab.chessai.tiralab.dataStructure.BetterList;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

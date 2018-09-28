@@ -69,4 +69,11 @@ public class ChessBoardTest {
         assertTrue(board.getBoard()[4][5] == 0);
         assertTrue(board.getBoard()[2][1] == 1);
     }
+    
+    @Test
+    public void copyBoardTest() {
+        ChessBoard boardCopy = new ChessBoard(board);
+        
+        assertEquals(board, boardCopy);
+    }
 }

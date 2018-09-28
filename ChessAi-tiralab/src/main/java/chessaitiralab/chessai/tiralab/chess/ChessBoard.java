@@ -15,6 +15,21 @@ public class ChessBoard {
     }
     
     /**
+     * The new board created will be a copy of the other one.
+     * 
+     * @param bo board you want to copy
+     */
+    public ChessBoard(ChessBoard bo) {
+        this.board = new int[9][9];
+        
+        for (int i = 8; i > 0; i--) {
+            for (int j = 1; j < 9; j++) {
+                board[i][j] = bo.getBoard()[i][j];
+            }
+        }
+    }
+    
+    /**
      * resets the board to the starting position
      */
     public void reset() {
@@ -46,6 +61,24 @@ public class ChessBoard {
 
     public int[][] getBoard() {
         return board;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!obj.getClass().equals(this.getClass())) {
+            return false;
+        }
+        
+        ChessBoard board2 = (ChessBoard) obj;
+        
+        for (int i = 8; i > 0; i--) {
+            for (int j = 1; j < 9; j++) {
+                if (board[i][j] != board2.getBoard()[i][j]) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
    
    

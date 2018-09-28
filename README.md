@@ -13,4 +13,4 @@
 
 [Viikkoraportti3](Documentation/viikkoraportti3.md)
 
-[viikkoraportti4](Documentation/viikkoraportti4.md)
+[Viikkoraportti4](Documentation/viikkoraportti4.md)

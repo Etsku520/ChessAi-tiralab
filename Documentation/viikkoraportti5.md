@@ -1,5 +1,5 @@
-Tällä viikolla kehitin peliä vähäsen ja laitoin mahdollisuuden pistää kaksi bottia vastakkain.
-Siistin myös koodia jonkin verran ja lisäsin luokkia. 
+Tällä viikolla kehitin peliä vähäsen, laitoin mahdollisuuden pistää kaksi bottia vastakkain,
+siistin koodia jonkin verran, lisäsin luokkia ja implemention min-max algoritmin tekoälyyn. 
 
 Suurin osa ajasta on kuitenkin mennyt tekoälkyn ihmettelemiseen.
 Virheitä tekoälystä korjattu melko suurimäärä, mutta se ei vieläkään näytä tekevän kauhean optimaalisia liikkeitä

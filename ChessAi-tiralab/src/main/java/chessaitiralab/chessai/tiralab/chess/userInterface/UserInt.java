@@ -3,6 +3,7 @@ package chessaitiralab.chessai.tiralab.chess.userInterface;
 import chessaitiralab.chessai.tiralab.ai.ChessAi;
 import chessaitiralab.chessai.tiralab.dataStructure.BetterList;
 import chessaitiralab.chessai.tiralab.chess.ChessBoard;
+import chessaitiralab.chessai.tiralab.chess.ChessGame;
 import chessaitiralab.chessai.tiralab.chess.ChessLogic;
 import chessaitiralab.chessai.tiralab.chess.Coordinate;
 import chessaitiralab.chessai.tiralab.chess.Move;
@@ -32,17 +33,22 @@ public class UserInt {
         
         while(!command.equals("e")) {
             System.out.println("You can give the following commands now:\n"
-                    + "s - for starting the game (not actully playable)\n"
+                    + "s - for starting the game\n"
+                    + "ai - to see 2 bots fighting (they will probably get stuck at somepoint)\n"
                     + "e - for exit\n");
 
             command = reader.nextLine().trim().toLowerCase();
 
             if (command.equals("s")) {
-                game();
+                gamePlayerVsAi();
             }
 
             else if (command.equals("e")) {
                 System.out.println("\nGonna exit");
+            }
+            
+            else if (command.equals("ai")) {
+                startAiVsAi();
             }
 
             else {
@@ -53,73 +59,96 @@ public class UserInt {
     }
     
     /**
-     * starts the game of chess itself
+     * starts the game of chess itself (player vs Ai)
      */
-    public void game() {
-        ChessLogic logic = new ChessLogic();
-        ChessAi bot = new ChessAi(new BetterTree(board, 0, 0), board, logic, 0);
-        
+    public void gamePlayerVsAi() {
         board.reset();
+        int turn = 1;
+        int winner = -1;
+        ChessGame game = new ChessGame(board);
+        
         System.out.println("Let the chess begin (btw king is now monarch because 'k' was taken by knight)");
-        Coordinate cood1 = new Coordinate("d8");
-        Coordinate cood2 = new Coordinate("e3");
-        Move move2 = new Move(cood1, cood2);
-        board.movePiece(move2);
         drawBoard();
         
-        while (true) {
-            logic.pawnQueens(board);
-            drawBoard();
+        while (winner == -1) {
             
-            while (true) {
-                System.out.println("What do you want to move? (for example 'a2')");
-                String coordinate = reader.nextLine();
-                String test1 = "abcdefgh";
-                String test2 = "12345678";
+            
+            if(turn % 2 == 1) {
+                while (true) {
+                    System.out.println("What do you want to move? (for example 'a2')");
+                    String coordinate = reader.nextLine();
+                    String test1 = "abcdefgh";
+                    String test2 = "12345678";
 
-                if(coordinate.trim().toLowerCase().equals("stop")) {
-                    break;
-                }
-                
-                if (coordinate.length() == 2 && test1.contains(coordinate.substring(0, 1)) 
-                        && test2.contains(coordinate.substring(1, 2))) {
-                    Coordinate cood = new Coordinate(coordinate);
-                    BetterList moveList = logic.checkMove(cood, board, 1);
-                    System.out.println(moveList);
-                    System.out.println("Give the number of the place you want to move to, 0 cancels your choice");
-                    int number = -1;
-
-                    try {
-                        number = Integer.parseInt(reader.nextLine());
-                    } catch (Exception e) {
-                        System.out.println("That is no number");
-                    }
-                    
-                    if (number <= 0) {
-                        continue;
-                    }
-
-                    if (number <= moveList.size()) {
-                        Move move = new Move(cood, (Coordinate) moveList.get(number - 1));
-                        board.movePiece(move);
+                    if(coordinate.trim().toLowerCase().equals("stop")) {
+                        winner = -2;
                         break;
-                    } else {
-                        System.out.println("index out of bounds");
                     }
 
-                } else {
-                    System.out.println("Not a valid coordinate\n");
+                    if (coordinate.length() == 2 && test1.contains(coordinate.substring(0, 1)) 
+                            && test2.contains(coordinate.substring(1, 2))) {
+                        Coordinate cood = new Coordinate(coordinate);
+                        BetterList moveList = game.askMoves(cood, turn);
+                        System.out.println(moveList);
+                        System.out.println("Give the number of the place you want to move to, 0 cancels your choice");
+                        int number = -1;
+
+                        try {
+                            number = Integer.parseInt(reader.nextLine());
+                        } catch (Exception e) {
+                            System.out.println("That is no number");
+                        }
+
+                        if (number <= 0) {
+                            continue;
+                        }
+
+                        if (number <= moveList.size()) {
+                            Move move = new Move(cood, (Coordinate) moveList.get(number - 1));
+                            winner = game.makeTurn(turn, move);
+                            break;
+                        } else {
+                            System.out.println("index out of bounds");
+                        }
+
+                    } else {
+                        System.out.println("Not a valid coordinate\n");
+                    }
                 }
+            } else {
+                winner = game.makeTurn(turn);
             }
             
-            Move move = bot.nextMove();
-            
-            System.out.println(move.getCoodA());
-            System.out.println(move.getCoodL());
-            
-            board.movePiece(move);
-            
+            turn++;
+            drawBoard();
         }
+        
+        if (winner != -2) {
+            System.out.println("player " + winner + " won");
+        } else {
+            System.out.println("game was stopped");
+        }
+    }
+    
+    /**
+     * Starts the game of 2 bots playing against each other
+     */
+    public void startAiVsAi() {
+        board.reset();
+        int turn = 1;
+        int winner = -1;
+        ChessGame game = new ChessGame(board);
+        
+        System.out.println("It's Ai showdown");
+        
+        while (winner == -1) {
+            drawBoard();
+            winner = game.makeTurn(turn);
+            
+            turn++;
+        }
+        
+        System.out.println("player " + winner + " won");
     }
     
     /**

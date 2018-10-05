@@ -86,60 +86,66 @@ public class ChessLogic {
         BetterList moveList = new BetterList();
 
         if (piece == 1) {
-            if (board.getBoard()[cood.getY() + 1][cood.getX()] == 0) {
-                if (!checkYourCheck(new Move(cood, new Coordinate(cood.getY() + 1 + (cood.getX()) * 10)), board)) {
-                    moveList.add(new Coordinate((cood.getY() + 1) + cood.getX() * 10));
+            if (cood.getY() < 8) {
+                if (board.getBoard()[cood.getY() + 1][cood.getX()] == 0) {
+                    if (!checkYourCheck(new Move(cood, new Coordinate(cood.getY() + 1 + (cood.getX()) * 10)), board)) {
+                        moveList.add(new Coordinate((cood.getY() + 1) + cood.getX() * 10));
+                    }
+                    if (cood.getY() == 2 && board.getBoard()[cood.getY() + 2][cood.getX()] == 0) {
+                        if (!checkYourCheck(new Move(cood, new Coordinate(cood.getY() + 2 + (cood.getX()) * 10)), board)) {
+                            moveList.add(new Coordinate((cood.getY() + 2) + cood.getX() * 10));
+                        }
+                    }
+
                 }
-                if (cood.getY() == 2 && board.getBoard()[cood.getY() + 2][cood.getX()] == 0) {
-                    if (!checkYourCheck(new Move(cood, new Coordinate(cood.getY() + 2 + (cood.getX()) * 10)), board)) {
-                        moveList.add(new Coordinate((cood.getY() + 2) + cood.getX() * 10));
+
+                if (cood.getX() > 1) {
+                    if (board.getBoard()[cood.getY() + 1][cood.getX() - 1] > 10) {
+                        if (!checkYourCheck(new Move(cood, new Coordinate(cood.getY() + 1 + (cood.getX() - 1) * 10)), board)) {
+                            moveList.add(new Coordinate((cood.getY() + 1) + (cood.getX() - 1) * 10));
+                        }
                     }
                 }
 
-            }
-
-            if (cood.getX() > 1) {
-                if (board.getBoard()[cood.getY() + 1][cood.getX() - 1] > 10) {
-                    if (!checkYourCheck(new Move(cood, new Coordinate(cood.getY() + 1 + (cood.getX() - 1) * 10)), board)) {
-                        moveList.add(new Coordinate((cood.getY() + 1) + (cood.getX() - 1) * 10));
+                if (cood.getX() < 8) {
+                    if (board.getBoard()[cood.getY() + 1][cood.getX() + 1] > 10) {
+                        if (!checkYourCheck(new Move(cood, new Coordinate((cood.getY() + 1) + (cood.getX() + 1) * 10)), board)) {
+                            moveList.add(new Coordinate((cood.getY() + 1) + (cood.getX() + 1) * 10));
+                        }
                     }
                 }
             }
-
-            if (cood.getX() < 8) {
-                if (board.getBoard()[cood.getY() + 1][cood.getX() + 1] > 10) {
-                    if (!checkYourCheck(new Move(cood, new Coordinate((cood.getY() + 1) + (cood.getX() + 1) * 10)), board)) {
-                        moveList.add(new Coordinate((cood.getY() + 1) + (cood.getX() + 1) * 10));
-                    }
-                }
-            }
+            
 
         } else {
-            if (board.getBoard()[cood.getY() - 1][cood.getX()] == 0) {
-                moveList.add(new Coordinate((cood.getY() - 1) + cood.getX() * 10));
-                if (cood.getY() == 7 && board.getBoard()[cood.getY() - 2][cood.getX()] == 0) {
-                    if (!checkYourCheck(new Move(cood, new Coordinate((cood.getY() - 2) + (cood.getX()) * 10)), board)) {
-                        moveList.add(new Coordinate((cood.getY() - 2) + cood.getX() * 10));
+            if (cood.getY() > 1) {
+                if (board.getBoard()[cood.getY() - 1][cood.getX()] == 0) {
+                    moveList.add(new Coordinate((cood.getY() - 1) + cood.getX() * 10));
+                    if (cood.getY() == 7 && board.getBoard()[cood.getY() - 2][cood.getX()] == 0) {
+                        if (!checkYourCheck(new Move(cood, new Coordinate((cood.getY() - 2) + (cood.getX()) * 10)), board)) {
+                            moveList.add(new Coordinate((cood.getY() - 2) + cood.getX() * 10));
+                        }
+                    }
+
+                }
+
+                if (cood.getX() > 1) {
+                    if (board.getBoard()[cood.getY() + 1][cood.getX() - 1] < 10 && board.getBoard()[cood.getY() + 1][cood.getX() - 1] != 0) {
+                        if (!checkYourCheck(new Move(cood, new Coordinate((cood.getY() - 1) + (cood.getX() - 1) * 10)), board)) {
+                            moveList.add(new Coordinate((cood.getY() - 1) + (cood.getX() - 1) * 10));
+                        }
                     }
                 }
 
-            }
-
-            if (cood.getX() > 1) {
-                if (board.getBoard()[cood.getY() + 1][cood.getX() - 1] < 10 && board.getBoard()[cood.getY() + 1][cood.getX() - 1] != 0) {
-                    if (!checkYourCheck(new Move(cood, new Coordinate((cood.getY() - 1) + (cood.getX() - 1) * 10)), board)) {
-                        moveList.add(new Coordinate((cood.getY() - 1) + (cood.getX() - 1) * 10));
+                if (cood.getX() < 8) {
+                    if (board.getBoard()[cood.getY() + 1][cood.getX() - 1] < 10 && board.getBoard()[cood.getY() + 1][cood.getX() - 1] != 0) {
+                        if (!checkYourCheck(new Move(cood, new Coordinate((cood.getY() - 1) + (cood.getX() + 1) * 10)), board)) {
+                            moveList.add(new Coordinate((cood.getY() - 1) + (cood.getX() + 1) * 10));
+                        }
                     }
                 }
             }
-
-            if (cood.getX() < 8) {
-                if (board.getBoard()[cood.getY() + 1][cood.getX() - 1] < 10 && board.getBoard()[cood.getY() + 1][cood.getX() - 1] != 0) {
-                    if (!checkYourCheck(new Move(cood, new Coordinate((cood.getY() - 1) + (cood.getX() + 1) * 10)), board)) {
-                        moveList.add(new Coordinate((cood.getY() - 1) + (cood.getX() + 1) * 10));
-                    }
-                }
-            }
+            
         }
 
         return moveList;
@@ -482,8 +488,8 @@ public class ChessLogic {
      * @return boolean
      */
     public boolean checkYourCheck(Move move, ChessBoard board) {
-        int piece = board.getBoard()[move.getYa()][move.getXa()];
-        int eaten = board.getBoard()[move.getYl()][move.getXl()];
+        int piece = board.getBoard()[move.getYb()][move.getXb()];
+        int eaten = board.getBoard()[move.getYe()][move.getXe()];
 
         board.movePiece(move);
 
@@ -509,8 +515,8 @@ public class ChessLogic {
             // kings/pawns
             if (x + 1 < 9) {
                 if (board.getBoard()[y][x + 1] == 16) {
-                    board.getBoard()[move.getYa()][move.getXa()] = piece;
-                    board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                    board.getBoard()[move.getYb()][move.getXb()] = piece;
+                    board.getBoard()[move.getYe()][move.getXe()] = eaten;
 
                     return true;
                 }
@@ -518,8 +524,8 @@ public class ChessLogic {
 
             if (x - 1 > 0) {
                 if (board.getBoard()[y][x - 1] == 16) {
-                    board.getBoard()[move.getYa()][move.getXa()] = piece;
-                    board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                    board.getBoard()[move.getYb()][move.getXb()] = piece;
+                    board.getBoard()[move.getYe()][move.getXe()] = eaten;
 
                     return true;
                 }
@@ -527,8 +533,8 @@ public class ChessLogic {
 
             if (y + 1 < 9) {
                 if (board.getBoard()[y + 1][x] == 16) {
-                    board.getBoard()[move.getYa()][move.getXa()] = piece;
-                    board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                    board.getBoard()[move.getYb()][move.getXb()] = piece;
+                    board.getBoard()[move.getYe()][move.getXe()] = eaten;
 
                     return true;
                 }
@@ -536,8 +542,8 @@ public class ChessLogic {
 
             if (y - 1 > 0) {
                 if (board.getBoard()[y - 1][x] == 16) {
-                    board.getBoard()[move.getYa()][move.getXa()] = piece;
-                    board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                    board.getBoard()[move.getYb()][move.getXb()] = piece;
+                    board.getBoard()[move.getYe()][move.getXe()] = eaten;
 
                     return true;
                 }
@@ -545,8 +551,8 @@ public class ChessLogic {
 
             if (x + 1 < 9 && y + 1 < 9) {
                 if (board.getBoard()[y + 1][x + 1] == 16 || board.getBoard()[y + 1][x + 1] == 11) {
-                    board.getBoard()[move.getYa()][move.getXa()] = piece;
-                    board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                    board.getBoard()[move.getYb()][move.getXb()] = piece;
+                    board.getBoard()[move.getYe()][move.getXe()] = eaten;
 
                     return true;
                 }
@@ -554,8 +560,8 @@ public class ChessLogic {
 
             if (x - 1 > 0 && y + 1 < 9) {
                 if (board.getBoard()[y + 1][x - 1] == 16 || board.getBoard()[y + 1][x - 1] == 11) {
-                    board.getBoard()[move.getYa()][move.getXa()] = piece;
-                    board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                    board.getBoard()[move.getYb()][move.getXb()] = piece;
+                    board.getBoard()[move.getYe()][move.getXe()] = eaten;
 
                     return true;
                 }
@@ -563,8 +569,8 @@ public class ChessLogic {
 
             if (x - 1 > 0 && y - 1 > 0) {
                 if (board.getBoard()[y - 1][x - 1] == 16) {
-                    board.getBoard()[move.getYa()][move.getXa()] = piece;
-                    board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                    board.getBoard()[move.getYb()][move.getXb()] = piece;
+                    board.getBoard()[move.getYe()][move.getXe()] = eaten;
 
                     return true;
                 }
@@ -572,8 +578,8 @@ public class ChessLogic {
 
             if (x + 1 < 9 && y - 1 > 0) {
                 if (board.getBoard()[y - 1][x + 1] == 16) {
-                    board.getBoard()[move.getYa()][move.getXa()] = piece;
-                    board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                    board.getBoard()[move.getYb()][move.getXb()] = piece;
+                    board.getBoard()[move.getYe()][move.getXe()] = eaten;
 
                     return true;
                 }
@@ -582,8 +588,8 @@ public class ChessLogic {
             // knights
             if (y + 2 < 9 && x + 1 < 9) {
                 if (board.getBoard()[y + 2][x + 1] == 12) {
-                    board.getBoard()[move.getYa()][move.getXa()] = piece;
-                    board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                    board.getBoard()[move.getYb()][move.getXb()] = piece;
+                    board.getBoard()[move.getYe()][move.getXe()] = eaten;
 
                     return true;
                 }
@@ -591,8 +597,8 @@ public class ChessLogic {
 
             if (y + 1 < 9 && x + 2 < 9) {
                 if (board.getBoard()[y + 1][x + 2] == 12) {
-                    board.getBoard()[move.getYa()][move.getXa()] = piece;
-                    board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                    board.getBoard()[move.getYb()][move.getXb()] = piece;
+                    board.getBoard()[move.getYe()][move.getXe()] = eaten;
 
                     return true;
                 }
@@ -600,8 +606,8 @@ public class ChessLogic {
 
             if (y - 1 > 0 && x + 2 < 9) {
                 if (board.getBoard()[y - 1][x + 2] == 12) {
-                    board.getBoard()[move.getYa()][move.getXa()] = piece;
-                    board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                    board.getBoard()[move.getYb()][move.getXb()] = piece;
+                    board.getBoard()[move.getYe()][move.getXe()] = eaten;
 
                     return true;
                 }
@@ -609,8 +615,8 @@ public class ChessLogic {
 
             if (y + 1 < 9 && x - 2 > 0) {
                 if (board.getBoard()[y + 1][x - 2] == 12) {
-                    board.getBoard()[move.getYa()][move.getXa()] = piece;
-                    board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                    board.getBoard()[move.getYb()][move.getXb()] = piece;
+                    board.getBoard()[move.getYe()][move.getXe()] = eaten;
 
                     return true;
                 }
@@ -618,8 +624,8 @@ public class ChessLogic {
 
             if (y - 2 > 0 && x + 1 < 9) {
                 if (board.getBoard()[y - 2][x + 1] == 12) {
-                    board.getBoard()[move.getYa()][move.getXa()] = piece;
-                    board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                    board.getBoard()[move.getYb()][move.getXb()] = piece;
+                    board.getBoard()[move.getYe()][move.getXe()] = eaten;
 
                     return true;
                 }
@@ -627,8 +633,8 @@ public class ChessLogic {
 
             if (y + 2 < 9 && x - 1 > 0) {
                 if (board.getBoard()[y + 2][x - 1] == 12) {
-                    board.getBoard()[move.getYa()][move.getXa()] = piece;
-                    board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                    board.getBoard()[move.getYb()][move.getXb()] = piece;
+                    board.getBoard()[move.getYe()][move.getXe()] = eaten;
 
                     return true;
                 }
@@ -636,8 +642,8 @@ public class ChessLogic {
 
             if (y - 2 > 0 && x - 1 > 0) {
                 if (board.getBoard()[y - 2][x - 1] == 12) {
-                    board.getBoard()[move.getYa()][move.getXa()] = piece;
-                    board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                    board.getBoard()[move.getYb()][move.getXb()] = piece;
+                    board.getBoard()[move.getYe()][move.getXe()] = eaten;
 
                     return true;
                 }
@@ -645,8 +651,8 @@ public class ChessLogic {
 
             if (y - 1 > 0 && x - 2 > 0) {
                 if (board.getBoard()[y - 1][x - 2] == 12) {
-                    board.getBoard()[move.getYa()][move.getXa()] = piece;
-                    board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                    board.getBoard()[move.getYb()][move.getXb()] = piece;
+                    board.getBoard()[move.getYe()][move.getXe()] = eaten;
 
                     return true;
                 }
@@ -658,8 +664,8 @@ public class ChessLogic {
                 if (board.getBoard()[y][i] != 0) {
 
                     if (board.getBoard()[y][i] == 14 || board.getBoard()[y][i] == 15) {
-                        board.getBoard()[move.getYa()][move.getXa()] = piece;
-                        board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                        board.getBoard()[move.getYb()][move.getXb()] = piece;
+                        board.getBoard()[move.getYe()][move.getXe()] = eaten;
 
                         return true;
                     } else {
@@ -674,13 +680,13 @@ public class ChessLogic {
                 if (board.getBoard()[y][i] != 0) {
 
                     if (board.getBoard()[y][i] == 14 || board.getBoard()[y][i] == 15) {
-                        board.getBoard()[move.getYa()][move.getXa()] = piece;
-                        board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                        board.getBoard()[move.getYb()][move.getXb()] = piece;
+                        board.getBoard()[move.getYe()][move.getXe()] = eaten;
 
                         return true;
                     } else {
-                        board.getBoard()[move.getYa()][move.getXa()] = piece;
-                        board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                        board.getBoard()[move.getYb()][move.getXb()] = piece;
+                        board.getBoard()[move.getYe()][move.getXe()] = eaten;
 
                         break;
                     }
@@ -693,13 +699,13 @@ public class ChessLogic {
                 if (board.getBoard()[y + i][x + i] != 0) {
 
                     if (board.getBoard()[y + i][x + i] == 13 || board.getBoard()[y + i][x + i] == 15) {
-                        board.getBoard()[move.getYa()][move.getXa()] = piece;
-                        board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                        board.getBoard()[move.getYb()][move.getXb()] = piece;
+                        board.getBoard()[move.getYe()][move.getXe()] = eaten;
 
                         return true;
                     } else {
-                        board.getBoard()[move.getYa()][move.getXa()] = piece;
-                        board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                        board.getBoard()[move.getYb()][move.getXb()] = piece;
+                        board.getBoard()[move.getYe()][move.getXe()] = eaten;
 
                         break;
                     }
@@ -712,13 +718,13 @@ public class ChessLogic {
                 if (board.getBoard()[y - i][x - i] != 0) {
 
                     if (board.getBoard()[y - i][x - i] == 13 || board.getBoard()[y - i][x - i] == 15) {
-                        board.getBoard()[move.getYa()][move.getXa()] = piece;
-                        board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                        board.getBoard()[move.getYb()][move.getXb()] = piece;
+                        board.getBoard()[move.getYe()][move.getXe()] = eaten;
 
                         return true;
                     } else {
-                        board.getBoard()[move.getYa()][move.getXa()] = piece;
-                        board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                        board.getBoard()[move.getYb()][move.getXb()] = piece;
+                        board.getBoard()[move.getYe()][move.getXe()] = eaten;
 
                         break;
                     }
@@ -731,13 +737,13 @@ public class ChessLogic {
                 if (board.getBoard()[y + i][x - i] != 0) {
 
                     if (board.getBoard()[y + i][x - i] == 13 || board.getBoard()[y + i][x - i] == 15) {
-                        board.getBoard()[move.getYa()][move.getXa()] = piece;
-                        board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                        board.getBoard()[move.getYb()][move.getXb()] = piece;
+                        board.getBoard()[move.getYe()][move.getXe()] = eaten;
 
                         return true;
                     } else {
-                        board.getBoard()[move.getYa()][move.getXa()] = piece;
-                        board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                        board.getBoard()[move.getYb()][move.getXb()] = piece;
+                        board.getBoard()[move.getYe()][move.getXe()] = eaten;
 
                         break;
                     }
@@ -750,13 +756,13 @@ public class ChessLogic {
                 if (board.getBoard()[y - i][x + i] != 0) {
 
                     if (board.getBoard()[y - i][x + i] == 13 || board.getBoard()[y - i][x + i] == 15) {
-                        board.getBoard()[move.getYa()][move.getXa()] = piece;
-                        board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                        board.getBoard()[move.getYb()][move.getXb()] = piece;
+                        board.getBoard()[move.getYe()][move.getXe()] = eaten;
 
                         return true;
                     } else {
-                        board.getBoard()[move.getYa()][move.getXa()] = piece;
-                        board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                        board.getBoard()[move.getYb()][move.getXb()] = piece;
+                        board.getBoard()[move.getYe()][move.getXe()] = eaten;
 
                         break;
                     }
@@ -769,13 +775,13 @@ public class ChessLogic {
                 if (board.getBoard()[i][x] != 0) {
 
                     if (board.getBoard()[i][x] == 14 || board.getBoard()[i][x] == 15) {
-                        board.getBoard()[move.getYa()][move.getXa()] = piece;
-                        board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                        board.getBoard()[move.getYb()][move.getXb()] = piece;
+                        board.getBoard()[move.getYe()][move.getXe()] = eaten;
 
                         return true;
                     } else {
-                        board.getBoard()[move.getYa()][move.getXa()] = piece;
-                        board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                        board.getBoard()[move.getYb()][move.getXb()] = piece;
+                        board.getBoard()[move.getYe()][move.getXe()] = eaten;
 
                         break;
                     }
@@ -788,13 +794,13 @@ public class ChessLogic {
                 if (board.getBoard()[i][x] != 0) {
 
                     if (board.getBoard()[i][x] == 14 || board.getBoard()[i][x] == 15) {
-                        board.getBoard()[move.getYa()][move.getXa()] = piece;
-                        board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                        board.getBoard()[move.getYb()][move.getXb()] = piece;
+                        board.getBoard()[move.getYe()][move.getXe()] = eaten;
 
                         return true;
                     } else {
-                        board.getBoard()[move.getYa()][move.getXa()] = piece;
-                        board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                        board.getBoard()[move.getYb()][move.getXb()] = piece;
+                        board.getBoard()[move.getYe()][move.getXe()] = eaten;
 
                         break;
                     }
@@ -806,8 +812,8 @@ public class ChessLogic {
             // kings/pawns
             if (x + 1 < 9) {
                 if (board.getBoard()[y][x + 1] == 6) {
-                    board.getBoard()[move.getYa()][move.getXa()] = piece;
-                    board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                    board.getBoard()[move.getYb()][move.getXb()] = piece;
+                    board.getBoard()[move.getYe()][move.getXe()] = eaten;
                     
                     return true;
                 }
@@ -815,8 +821,8 @@ public class ChessLogic {
 
             if (x - 1 > 0) {
                 if (board.getBoard()[y][x - 1] == 6) {
-                    board.getBoard()[move.getYa()][move.getXa()] = piece;
-                    board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                    board.getBoard()[move.getYb()][move.getXb()] = piece;
+                    board.getBoard()[move.getYe()][move.getXe()] = eaten;
                     
                     return true;
                 }
@@ -824,8 +830,8 @@ public class ChessLogic {
 
             if (y + 1 < 9) {
                 if (board.getBoard()[y + 1][x] == 6) {
-                    board.getBoard()[move.getYa()][move.getXa()] = piece;
-                    board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                    board.getBoard()[move.getYb()][move.getXb()] = piece;
+                    board.getBoard()[move.getYe()][move.getXe()] = eaten;
                     
                     return true;
                 }
@@ -833,8 +839,8 @@ public class ChessLogic {
 
             if (y - 1 > 0) {
                 if (board.getBoard()[y - 1][x] == 6) {
-                    board.getBoard()[move.getYa()][move.getXa()] = piece;
-                    board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                    board.getBoard()[move.getYb()][move.getXb()] = piece;
+                    board.getBoard()[move.getYe()][move.getXe()] = eaten;
                     
                     return true;
                 }
@@ -842,8 +848,8 @@ public class ChessLogic {
 
             if (x + 1 < 9 && y + 1 < 9) {
                 if (board.getBoard()[y + 1][x + 1] == 6) {
-                    board.getBoard()[move.getYa()][move.getXa()] = piece;
-                    board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                    board.getBoard()[move.getYb()][move.getXb()] = piece;
+                    board.getBoard()[move.getYe()][move.getXe()] = eaten;
                     
                     return true;
                 }
@@ -851,8 +857,8 @@ public class ChessLogic {
 
             if (x - 1 > 0 && y + 1 < 9) {
                 if (board.getBoard()[y + 1][x - 1] == 6) {
-                    board.getBoard()[move.getYa()][move.getXa()] = piece;
-                    board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                    board.getBoard()[move.getYb()][move.getXb()] = piece;
+                    board.getBoard()[move.getYe()][move.getXe()] = eaten;
                     
                     return true;
                 }
@@ -860,8 +866,8 @@ public class ChessLogic {
 
             if (x - 1 > 0 && y - 1 > 0) {
                 if (board.getBoard()[y - 1][x - 1] == 6 || board.getBoard()[y - 1][x - 1] == 1) {
-                    board.getBoard()[move.getYa()][move.getXa()] = piece;
-                    board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                    board.getBoard()[move.getYb()][move.getXb()] = piece;
+                    board.getBoard()[move.getYe()][move.getXe()] = eaten;
                     
                     return true;
                 }
@@ -869,8 +875,8 @@ public class ChessLogic {
 
             if (x + 1 < 9 && y - 1 > 0) {
                 if (board.getBoard()[y - 1][x + 1] == 6 || board.getBoard()[y - 1][x + 1] == 1) {
-                    board.getBoard()[move.getYa()][move.getXa()] = piece;
-                    board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                    board.getBoard()[move.getYb()][move.getXb()] = piece;
+                    board.getBoard()[move.getYe()][move.getXe()] = eaten;
                     
                     return true;
                 }
@@ -879,8 +885,8 @@ public class ChessLogic {
            // knights
             if (y + 2 < 9 && x + 1 < 9) {
                 if (board.getBoard()[y + 2][x + 1] == 2) {
-                    board.getBoard()[move.getYa()][move.getXa()] = piece;
-                    board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                    board.getBoard()[move.getYb()][move.getXb()] = piece;
+                    board.getBoard()[move.getYe()][move.getXe()] = eaten;
 
                     return true;
                 }
@@ -888,8 +894,8 @@ public class ChessLogic {
 
             if (y + 1 < 9 && x + 2 < 9) {
                 if (board.getBoard()[y + 1][x + 2] == 2) {
-                    board.getBoard()[move.getYa()][move.getXa()] = piece;
-                    board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                    board.getBoard()[move.getYb()][move.getXb()] = piece;
+                    board.getBoard()[move.getYe()][move.getXe()] = eaten;
 
                     return true;
                 }
@@ -897,8 +903,8 @@ public class ChessLogic {
 
             if (y - 1 > 0 && x + 2 < 9) {
                 if (board.getBoard()[y - 1][x + 2] == 2) {
-                    board.getBoard()[move.getYa()][move.getXa()] = piece;
-                    board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                    board.getBoard()[move.getYb()][move.getXb()] = piece;
+                    board.getBoard()[move.getYe()][move.getXe()] = eaten;
 
                     return true;
                 }
@@ -906,8 +912,8 @@ public class ChessLogic {
 
             if (y + 1 < 9 && x - 2 > 0) {
                 if (board.getBoard()[y + 1][x - 2] == 2) {
-                    board.getBoard()[move.getYa()][move.getXa()] = piece;
-                    board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                    board.getBoard()[move.getYb()][move.getXb()] = piece;
+                    board.getBoard()[move.getYe()][move.getXe()] = eaten;
 
                     return true;
                 }
@@ -915,8 +921,8 @@ public class ChessLogic {
 
             if (y - 2 > 0 && x + 1 < 9) {
                 if (board.getBoard()[y - 2][x + 1] == 2) {
-                    board.getBoard()[move.getYa()][move.getXa()] = piece;
-                    board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                    board.getBoard()[move.getYb()][move.getXb()] = piece;
+                    board.getBoard()[move.getYe()][move.getXe()] = eaten;
 
                     return true;
                 }
@@ -924,8 +930,8 @@ public class ChessLogic {
 
             if (y + 2 < 9 && x - 1 > 0) {
                 if (board.getBoard()[y + 2][x - 1] == 2) {
-                    board.getBoard()[move.getYa()][move.getXa()] = piece;
-                    board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                    board.getBoard()[move.getYb()][move.getXb()] = piece;
+                    board.getBoard()[move.getYe()][move.getXe()] = eaten;
 
                     return true;
                 }
@@ -933,8 +939,8 @@ public class ChessLogic {
 
             if (y - 2 > 0 && x - 1 > 0) {
                 if (board.getBoard()[y - 2][x - 1] == 2) {
-                    board.getBoard()[move.getYa()][move.getXa()] = piece;
-                    board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                    board.getBoard()[move.getYb()][move.getXb()] = piece;
+                    board.getBoard()[move.getYe()][move.getXe()] = eaten;
 
                     return true;
                 }
@@ -942,8 +948,8 @@ public class ChessLogic {
 
             if (y - 1 > 0 && x - 2 > 0) {
                 if (board.getBoard()[y - 1][x - 2] == 2) {
-                    board.getBoard()[move.getYa()][move.getXa()] = piece;
-                    board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                    board.getBoard()[move.getYb()][move.getXb()] = piece;
+                    board.getBoard()[move.getYe()][move.getXe()] = eaten;
 
                     return true;
                 }
@@ -955,13 +961,13 @@ public class ChessLogic {
                 if (board.getBoard()[y][i] != 0) {
 
                     if (board.getBoard()[y][i] == 4 || board.getBoard()[y][i] == 5) {
-                        board.getBoard()[move.getYa()][move.getXa()] = piece;
-                        board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                        board.getBoard()[move.getYb()][move.getXb()] = piece;
+                        board.getBoard()[move.getYe()][move.getXe()] = eaten;
                     
                         return true;
                     } else {
-                        board.getBoard()[move.getYa()][move.getXa()] = piece;
-                        board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                        board.getBoard()[move.getYb()][move.getXb()] = piece;
+                        board.getBoard()[move.getYe()][move.getXe()] = eaten;
                         
                         break;
                     }
@@ -974,13 +980,13 @@ public class ChessLogic {
                 if (board.getBoard()[y][i] != 0) {
 
                     if (board.getBoard()[y][i] == 4 || board.getBoard()[y][i] == 5) {
-                        board.getBoard()[move.getYa()][move.getXa()] = piece;
-                        board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                        board.getBoard()[move.getYb()][move.getXb()] = piece;
+                        board.getBoard()[move.getYe()][move.getXe()] = eaten;
                         
                         return true;
                     } else {
-                        board.getBoard()[move.getYa()][move.getXa()] = piece;
-                        board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                        board.getBoard()[move.getYb()][move.getXb()] = piece;
+                        board.getBoard()[move.getYe()][move.getXe()] = eaten;
                         
                         break;
                     }
@@ -993,13 +999,13 @@ public class ChessLogic {
                 if (board.getBoard()[y + i][x + i] != 0) {
 
                     if (board.getBoard()[y + i][x + i] == 3 || board.getBoard()[y + i][x + i] == 5) {
-                        board.getBoard()[move.getYa()][move.getXa()] = piece;
-                        board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                        board.getBoard()[move.getYb()][move.getXb()] = piece;
+                        board.getBoard()[move.getYe()][move.getXe()] = eaten;
                         
                         return true;
                     } else {
-                        board.getBoard()[move.getYa()][move.getXa()] = piece;
-                        board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                        board.getBoard()[move.getYb()][move.getXb()] = piece;
+                        board.getBoard()[move.getYe()][move.getXe()] = eaten;
                         
                         break;
                     }
@@ -1012,13 +1018,13 @@ public class ChessLogic {
                 if (board.getBoard()[y - i][x - i] != 0) {
 
                     if (board.getBoard()[y - i][x - i] == 3 || board.getBoard()[y - i][x - i] == 5) {
-                        board.getBoard()[move.getYa()][move.getXa()] = piece;
-                        board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                        board.getBoard()[move.getYb()][move.getXb()] = piece;
+                        board.getBoard()[move.getYe()][move.getXe()] = eaten;
                         
                         return true;
                     } else {
-                        board.getBoard()[move.getYa()][move.getXa()] = piece;
-                        board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                        board.getBoard()[move.getYb()][move.getXb()] = piece;
+                        board.getBoard()[move.getYe()][move.getXe()] = eaten;
                         
                         break;
                     }
@@ -1031,13 +1037,13 @@ public class ChessLogic {
                 if (board.getBoard()[y + i][x - i] != 0) {
 
                     if (board.getBoard()[y + i][x - i] == 3 || board.getBoard()[y + i][x - i] == 5) {
-                        board.getBoard()[move.getYa()][move.getXa()] = piece;
-                        board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                        board.getBoard()[move.getYb()][move.getXb()] = piece;
+                        board.getBoard()[move.getYe()][move.getXe()] = eaten;
                         
                         return true;
                     } else {
-                        board.getBoard()[move.getYa()][move.getXa()] = piece;
-                        board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                        board.getBoard()[move.getYb()][move.getXb()] = piece;
+                        board.getBoard()[move.getYe()][move.getXe()] = eaten;
                         
                         break;
                     }
@@ -1050,13 +1056,13 @@ public class ChessLogic {
                 if (board.getBoard()[y - i][x + i] != 0) {
 
                     if (board.getBoard()[y - i][x + i] == 3 || board.getBoard()[y - i][x + i] == 5) {
-                        board.getBoard()[move.getYa()][move.getXa()] = piece;
-                        board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                        board.getBoard()[move.getYb()][move.getXb()] = piece;
+                        board.getBoard()[move.getYe()][move.getXe()] = eaten;
                         
                         return true;
                     } else {
-                        board.getBoard()[move.getYa()][move.getXa()] = piece;
-                        board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                        board.getBoard()[move.getYb()][move.getXb()] = piece;
+                        board.getBoard()[move.getYe()][move.getXe()] = eaten;
                         
                         break;
                     }
@@ -1069,13 +1075,13 @@ public class ChessLogic {
                 if (board.getBoard()[i][x] != 0) {
 
                     if (board.getBoard()[i][x] == 4 || board.getBoard()[i][x] == 5) {
-                        board.getBoard()[move.getYa()][move.getXa()] = piece;
-                        board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                        board.getBoard()[move.getYb()][move.getXb()] = piece;
+                        board.getBoard()[move.getYe()][move.getXe()] = eaten;
                         
                         return true;
                     } else {
-                        board.getBoard()[move.getYa()][move.getXa()] = piece;
-                        board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                        board.getBoard()[move.getYb()][move.getXb()] = piece;
+                        board.getBoard()[move.getYe()][move.getXe()] = eaten;
                         
                         break;
                     }
@@ -1088,21 +1094,21 @@ public class ChessLogic {
                 if (board.getBoard()[i][x] != 0) {
 
                     if (board.getBoard()[i][x] == 4 || board.getBoard()[i][x] == 5) {
-                        board.getBoard()[move.getYa()][move.getXa()] = piece;
-                        board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                        board.getBoard()[move.getYb()][move.getXb()] = piece;
+                        board.getBoard()[move.getYe()][move.getXe()] = eaten;
                         
                         return true;
                     } else {
-                        board.getBoard()[move.getYa()][move.getXa()] = piece;
-                        board.getBoard()[move.getYl()][move.getXl()] = eaten;
+                        board.getBoard()[move.getYb()][move.getXb()] = piece;
+                        board.getBoard()[move.getYe()][move.getXe()] = eaten;
                         
                         break;
                     }
                 }
             }
         }
-        board.getBoard()[move.getYa()][move.getXa()] = piece;
-        board.getBoard()[move.getYl()][move.getXl()] = eaten;
+        board.getBoard()[move.getYb()][move.getXb()] = piece;
+        board.getBoard()[move.getYe()][move.getXe()] = eaten;
 
         return false;
     }

@@ -53,9 +53,9 @@ public class ChessBoard {
      * @return eaten piece
      */
     public int movePiece(Move move) {
-        int eaten = this.board[move.getYl()][move.getXl()];
-        this.board[move.getYl()][move.getXl()] = this.board[move.getYa()][move.getXa()];
-        this.board[move.getYa()][move.getXa()] = 0;
+        int eaten = this.board[move.getYe()][move.getXe()];
+        this.board[move.getYe()][move.getXe()] = this.board[move.getYb()][move.getXb()];
+        this.board[move.getYb()][move.getXb()] = 0;
         return eaten;
     }
 

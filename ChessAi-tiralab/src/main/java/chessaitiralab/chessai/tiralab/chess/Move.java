@@ -11,36 +11,36 @@ package chessaitiralab.chessai.tiralab.chess;
  * @author hceetu
  */
 public class Move {
-    private Coordinate coodA;
-    private Coordinate coodL;
+    private Coordinate coodB;
+    private Coordinate coodE;
 
     public Move(Coordinate a, Coordinate l) {
-        coodA = a;
-        coodL = l;
+        coodB = a;
+        coodE = l;
     }
 
-    public int getYa() {
-        return coodA.getY();
+    public int getYb() {
+        return coodB.getY();
     }
 
-    public int getXa() {
-        return coodA.getX();
+    public int getXb() {
+        return coodB.getX();
     }
 
-    public int getYl() {
-        return coodL.getY();
+    public int getYe() {
+        return coodE.getY();
     }
 
-    public int getXl() {
-        return coodL.getX();
+    public int getXe() {
+        return coodE.getX();
     }
 
-    public Coordinate getCoodA() {
-        return coodA;
+    public Coordinate getCoodB() {
+        return coodB;
     }
 
-    public Coordinate getCoodL() {
-        return coodL;
+    public Coordinate getCoodE() {
+        return coodE;
     }
     
     

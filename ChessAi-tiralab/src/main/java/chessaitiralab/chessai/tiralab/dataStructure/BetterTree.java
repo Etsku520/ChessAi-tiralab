@@ -3,7 +3,8 @@ package chessaitiralab.chessai.tiralab.dataStructure;
 import chessaitiralab.chessai.tiralab.chess.ChessBoard;
 
 /**
- *
+ * This s what I use when I need trees.
+ * 
  * @author hceetu
  */
 public class BetterTree {

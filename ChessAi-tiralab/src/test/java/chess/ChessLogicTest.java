@@ -110,7 +110,7 @@ public class ChessLogicTest {
     }
     
     @Test
-    public void chekcKing() {
+    public void chekcKingTest() {
         Coordinate cood1 = new Coordinate("e1");
         Coordinate cood2 = new Coordinate("b4");
         Move move = new Move(cood1, cood2);
@@ -121,4 +121,10 @@ public class ChessLogicTest {
         assertEquals("[c4, c5, a5, c3, a3, a4, b3, b5]", moves.toString());
     }
     
+    @Test
+    public void startQueenTest() {
+        BetterList moves = logic.checkMove(new Coordinate("d8"), board, 0);
+        
+        assertEquals("[]", moves.toString());
+    }
 }

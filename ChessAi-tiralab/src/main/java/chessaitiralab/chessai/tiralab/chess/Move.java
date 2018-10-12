@@ -42,6 +42,18 @@ public class Move {
     public Coordinate getCoodE() {
         return coodE;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!obj.getClass().equals(this)) {
+            return false;
+        }
+        
+        Move compare = (Move) obj;
+        
+        return compare.coodB.toString().equals(this.coodB.toString()) 
+                && compare.coodE.toString().equals(this.coodE.toString());
+    }
     
     
 }

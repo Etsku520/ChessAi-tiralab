@@ -105,10 +105,10 @@ public class BetterList {
         String list = "[";
         
         for (int i = 0; i < size - 1; i++) {
-            list += objects[i].toString() + ", ";
+            list +=  (i + 1) + ".(" + objects[i].toString() + "), ";
         }
         
-        list += objects[size-1].toString() + "]";
+        list += size + ".(" + objects[size-1].toString() + ")]";
         
         return list;
     }

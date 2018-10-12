@@ -138,7 +138,7 @@ public class ChessLogic {
                 }
 
                 if (cood.getX() < 8) {
-                    if (board.getBoard()[cood.getY() + 1][cood.getX() - 1] < 10 && board.getBoard()[cood.getY() + 1][cood.getX() - 1] != 0) {
+                    if (board.getBoard()[cood.getY() + 1][cood.getX() + 1] < 10 && board.getBoard()[cood.getY() + 1][cood.getX() + 1] != 0) {
                         if (!checkYourCheck(new Move(cood, new Coordinate((cood.getY() - 1) + (cood.getX() + 1) * 10)), board)) {
                             moveList.add(new Coordinate((cood.getY() - 1) + (cood.getX() + 1) * 10));
                         }
@@ -228,7 +228,7 @@ public class ChessLogic {
         if (cood.getY() + 2 < 9 && cood.getX() + 1 < 9) {
             going = board.getBoard()[cood.getY() + 2][cood.getX() + 1];
 
-            if (going == 0 || going < 10 && piece > 10 || going > 10 && piece < 10) {
+            if (going == 0 || (going < 10 && piece > 10) || (going > 10 && piece < 10)) {
                 if (!checkYourCheck(new Move(cood, new Coordinate(cood.getY() + 2 + (cood.getX() + 1) * 10)), board)) {
                     moveList.add(new Coordinate((cood.getY() + 2) + (cood.getX() + 1) * 10));
                 }
@@ -238,7 +238,7 @@ public class ChessLogic {
         if (cood.getY() + 1 < 9 && cood.getX() + 2 < 9) {
             going = board.getBoard()[cood.getY() + 1][cood.getX() + 2];
 
-            if (going == 0 || going < 10 && piece > 10 || going > 10 && piece < 10) {
+            if (going == 0 || (going < 10 && piece > 10) || (going > 10 && piece < 10)) {
                 if (!checkYourCheck(new Move(cood, new Coordinate(cood.getY() + 1 + (cood.getX() + 2) * 10)), board)) {
                     moveList.add(new Coordinate((cood.getY() + 1) + (cood.getX() + 2) * 10));
                 }
@@ -248,7 +248,7 @@ public class ChessLogic {
         if (cood.getY() - 1 > 0 && cood.getX() + 2 < 9) {
             going = board.getBoard()[cood.getY() - 1][cood.getX() + 2];
 
-            if (going == 0 || going < 10 && piece > 10 || going > 10 && piece < 10) {
+            if (going == 0 || (going < 10 && piece > 10) || (going > 10 && piece < 10)) {
                 if (!checkYourCheck(new Move(cood, new Coordinate(cood.getY() - 1 + (cood.getX() + 2) * 10)), board)) {
                     moveList.add(new Coordinate((cood.getY() - 1) + (cood.getX() + 2) * 10));
                 }
@@ -258,7 +258,7 @@ public class ChessLogic {
         if (cood.getY() + 1 < 9 && cood.getX() - 2 > 0) {
             going = board.getBoard()[cood.getY() + 1][cood.getX() - 2];
 
-            if (going == 0 || going < 10 && piece > 10 || going > 10 && piece < 10) {
+            if (going == 0 || (going < 10 && piece > 10) || (going > 10 && piece < 10)) {
                 if (!checkYourCheck(new Move(cood, new Coordinate(cood.getY() + 1 + (cood.getX() - 2) * 10)), board)) {
                     moveList.add(new Coordinate((cood.getY() + 1) + (cood.getX() - 2) * 10));
                 }
@@ -268,7 +268,7 @@ public class ChessLogic {
         if (cood.getY() - 2 > 0 && cood.getX() + 1 < 9) {
             going = board.getBoard()[cood.getY() - 2][cood.getX() + 1];
 
-            if (going == 0 || going < 10 && piece > 10 || going > 10 && piece < 10) {
+            if (going == 0 || (going < 10 && piece > 10) || (going > 10 && piece < 10)) {
                 if (!checkYourCheck(new Move(cood, new Coordinate(cood.getY() - 2 + (cood.getX() + 1) * 10)), board)) {
                     moveList.add(new Coordinate((cood.getY() - 2) + (cood.getX() + 1) * 10));
                 }
@@ -278,7 +278,7 @@ public class ChessLogic {
         if (cood.getY() + 2 < 9 && cood.getX() - 1 > 0) {
             going = board.getBoard()[cood.getY() + 2][cood.getX() - 1];
 
-            if (going == 0 || going < 10 && piece > 10 || going > 10 && piece < 10) {
+            if (going == 0 || (going < 10 && piece > 10) || (going > 10 && piece < 10)) {
                 if (!checkYourCheck(new Move(cood, new Coordinate(cood.getY() + 2 + (cood.getX() - 1) * 10)), board)) {
                     moveList.add(new Coordinate((cood.getY() + 2) + (cood.getX() - 1) * 10));
                 }
@@ -288,7 +288,7 @@ public class ChessLogic {
         if (cood.getY() - 2 > 0 && cood.getX() - 1 > 0) {
             going = board.getBoard()[cood.getY() - 2][cood.getX() - 1];
 
-            if (going == 0 || going < 10 && piece > 10 || going > 10 && piece < 10) {
+            if (going == 0 || (going < 10 && piece > 10) || (going > 10 && piece < 10)) {
                 if (!checkYourCheck(new Move(cood, new Coordinate(cood.getY() - 2 + (cood.getX() - 1) * 10)), board)) {
                     moveList.add(new Coordinate((cood.getY() - 2) + (cood.getX() - 1) * 10));
                 }
@@ -298,7 +298,7 @@ public class ChessLogic {
         if (cood.getY() - 1 > 0 && cood.getX() - 2 > 0) {
             going = board.getBoard()[cood.getY() - 1][cood.getX() - 2];
 
-            if (going == 0 || going < 10 && piece > 10 || going > 10 && piece < 10) {
+            if (going == 0 ||(going < 10 && piece > 10) || (going > 10 && piece < 10)) {
                 if (!checkYourCheck(new Move(cood, new Coordinate(cood.getY() - 1 + (cood.getX() - 2) * 10)), board)) {
                     moveList.add(new Coordinate((cood.getY() - 1) + (cood.getX() - 2) * 10));
                 }

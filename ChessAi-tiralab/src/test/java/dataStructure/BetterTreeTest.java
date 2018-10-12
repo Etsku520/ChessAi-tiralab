@@ -5,6 +5,7 @@
  */
 package dataStructure;
 
+import chessaitiralab.chessai.tiralab.chess.Turn;
 import chessaitiralab.chessai.tiralab.dataStructure.BetterTree;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -46,18 +47,19 @@ public class BetterTreeTest {
     
     @Test
     public void constructTest() {
-        BetterTree tree = new BetterTree("jeeee", 1, 2);
+        Turn turn = new Turn(null, 2, null);
+        BetterTree tree = new BetterTree(turn);
         
-        assertEquals("jeeee", tree.getO1());
+        assertEquals(turn, tree.getO());
         assertEquals(tree, tree.getParent());
         assertEquals(0, tree.getChildren().size());
     }
     
     @Test
     public void addChildrenTest() {
-        BetterTree tree = new BetterTree("jeeee", 5, 3);
-        BetterTree tree2 = new BetterTree("jeeee?", 5, 4);
-        BetterTree tree3 = new BetterTree("jeeee!!", 5, 5);
+        BetterTree tree = new BetterTree(null);
+        BetterTree tree2 = new BetterTree(null);
+        BetterTree tree3 = new BetterTree(null);
         
         tree.addChild(tree2);
         tree.addChild(tree3);
@@ -68,9 +70,9 @@ public class BetterTreeTest {
     
     @Test
     public void addChildrenParentTest() {
-        BetterTree tree = new BetterTree("jeeee", "keee", 16);
-        BetterTree tree2 = new BetterTree("jeeee?", 1, 5);
-        BetterTree tree3 = new BetterTree("jeeee!!", 7, 1);
+        BetterTree tree = new BetterTree(null);
+        BetterTree tree2 = new BetterTree(null);
+        BetterTree tree3 = new BetterTree(null);
         
         tree.addChild(tree2);
         tree.addChild(tree3);
@@ -84,9 +86,10 @@ public class BetterTreeTest {
     
     @Test
     public void setOTest() {
-        BetterTree tree = new BetterTree("jeeee", "keee", 20);
-        tree.setO1("nuuu");
+        BetterTree tree = new BetterTree(null);
+        Turn turn = new Turn(null, 2, null);
+        tree.setO(turn);
         
-        assertEquals("nuuu", tree.getO1());
+        assertEquals(turn, tree.getO());
     }
 }

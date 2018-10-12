@@ -4,14 +4,14 @@ import chessaitiralab.chessai.tiralab.chess.ChessBoard;
 import chessaitiralab.chessai.tiralab.chess.ChessLogic;
 import chessaitiralab.chessai.tiralab.chess.Coordinate;
 import chessaitiralab.chessai.tiralab.chess.Move;
+import chessaitiralab.chessai.tiralab.chess.Turn;
 import chessaitiralab.chessai.tiralab.dataStructure.BetterList;
 import chessaitiralab.chessai.tiralab.dataStructure.BetterTree;
-import java.util.Random;
 
 /**
  * This will be a glorious AI.
  * 
- * @author hceetu
+ * @author hceetuc
  */
 public class ChessAi {
     BetterTree chessTree;
@@ -28,7 +28,7 @@ public class ChessAi {
     /**
      * Constructor for ChessAi
      * 
-     * @param chessTree the current sitsuation
+     * @param chessTree the current situation
      * @param board the board
      * @param logic 
      * @param player 
@@ -55,73 +55,18 @@ public class ChessAi {
      * @return move
      */
     public Move nextMove() {
-        Random rand = new Random();
-        chessTree = new BetterTree(board, null, null);
-        makeTree(chessTree, 2);
-        int best = -99999999;
-        Move move = null;
-        BetterTree newTree = null;
-        BetterList bestMoves = new BetterList();
+        chessTree = new BetterTree(new Turn(board, 0, null));
+        BetterTree bestTree = makeTreeAndMinMax(chessTree, 3, 0);
         
-        for (int i = 0; i < chessTree.getChildren().size(); i++) {
-            BetterTree tree = (BetterTree) chessTree.getChildren().get(i);
-            int value = minMaxDive(tree, 1);
-            System.out.println(value);
-            
-            if (value > best) {
-                best = value;
-                bestMoves = new BetterList();
-                newTree = tree;
-                bestMoves.add((Move) tree.getO3());
-            }
-            
-            if (value == best) {
-                bestMoves.add((Move) tree.getO3());
-            }
-        }
+        chessTree = bestTree;
+        chessTree.setParent(chessTree);
+        Turn turn = (Turn) chessTree.getO();
+        turn.setBoard(board);
         
-        move = (Move) bestMoves.get(rand.nextInt(bestMoves.size()));
+        System.out.println("best: " + turn.getValue());
         
-        chessTree = newTree;
         
-        return move;
-    }
-    
-    /**
-     * It is basically a depth-first search that at the same time uses the
-     * evaluation and min-max
-     * 
-     */
-    public int minMaxDive(BetterTree tree, int depth) {
-        if (tree.getChildren().size() == 0) {
-            int vale = evaluate(tree);
-            return vale;
-        }
-               
-        if (depth % 2 == 0) {
-            int max = -999999;
-            for (int i = 0; i < tree.getChildren().size(); i++) {
-                int value = minMaxDive((BetterTree) tree.getChildren().get(i), depth + 1);
-                
-                if (value > max) {
-                    max = value;
-                }
-                
-            }
-            
-            return max;
-        }
-        
-        int min = 99999;
-        for (int i = 0; i < tree.getChildren().size(); i++) {
-            int value = minMaxDive((BetterTree) tree.getChildren().get(i), depth + 1);
-             
-            if (value < min) {
-                min = value;
-            }
-        }
-        
-        return min;
+        return turn.getMove();
     }
     
     /**
@@ -132,8 +77,8 @@ public class ChessAi {
      */
     public int evaluate(BetterTree tree) {
         int value = 0;
-        int eaten = (int) tree.getO2();
-        ChessBoard board = (ChessBoard) tree.getO1();
+        Turn turn = (Turn) tree.getO();
+        ChessBoard board = turn.getBoard();
         
         if (logic.checkMate(board, 0)) {
             value -= 9000;
@@ -259,27 +204,125 @@ public class ChessAi {
     }
     
     /**
-     * Gives the tree i + 1 layers. Filled with all the possible moves.
-     * Also this only works properly if the i is even number.
+     * Help class to find answer for min-max
      * 
      * @param tree
-     * @param i 
+     * @param where
+     * @param bottom
+     * @return 
      */
-    public void makeTree(BetterTree tree, int i) {
+    public BetterTree minMax(BetterTree tree, int where, boolean bottom) {
+        BetterTree bestTree = tree;
+        Turn turn = (Turn) tree.getO();
         
-        if (i % 2 == 0) {
-            allMoves(tree, player);
-        } else {
-            allMoves(tree, Math.abs(player - 1));
+        int max = -99999999;
+        int min = 99999999;
+
+        if (bottom) {
+            for (int j = 0; j < tree.getChildren().size(); j++) {
+                BetterTree childTree = (BetterTree) tree.getChildren().get(j);
+                Turn childTurn = (Turn) childTree.getO();
+                int value = evaluate(childTree);
+                childTurn.setValue(value);
+                int knights = 0;
+                System.out.println("layer: " + (where + 1) + " value: " + value);
+                for (int i = 1; i < 9; i++) {
+                    for (int k = 1; k < 9; k++) {
+                        if (childTurn.getBoard().getBoard()[i][k] == 12) {
+                            knights++;
+                        } 
+                    }
+                }
+                System.out.println(knights);
+
+                if (where % 2 == 0 && value > max) {
+                    max = value;
+                    bestTree = childTree;
+                    turn.setValue(value);
+                } else if (where % 2 == 1 && value < min) {
+                    min = value;
+                    bestTree = childTree;
+                    turn.setValue(value);
+                }
+            }
+            return bestTree;
+        }
+        return bestTree;
+    }
+    
+    /**
+     * Gives tree the given depth . Filled with all the possible moves.
+     * It also evaluates the moves, while it's making the tree. Returns the best turn
+     * as a tree.
+     * 
+     * @param tree
+     * @param depth the depth of the tree in making
+     * @param where depth we are at now (starts form 0)
+     * @return 
+     */
+    public BetterTree makeTreeAndMinMax(BetterTree tree, int depth, int where) {
+        BetterTree bestTree = tree;
+        Turn turn = (Turn) tree.getO();
+        turn.setValue(null);
+        
+        if (tree.getChildren().size() == 0) {
+            
+            if (where % 2 == 0) {
+                allMoves(tree, player);
+            } else {
+                allMoves(tree, Math.abs(player - 1));
+            }
         }
         
-        if (i == 0) {
-            return;
+        if (where == depth - 1) {
+            return minMax(tree, where, true);
         }
         
+        int max = -99999999;
+        int min = 99999999;
         for (int j = 0; j < tree.getChildren().size(); j++) {
-            makeTree((BetterTree) tree.getChildren().get(j), i - 1);
+            BetterTree childTree = (BetterTree) tree.getChildren().get(j);
+            makeTreeAndMinMax(childTree, depth ,where + 1);
+            Turn childTurn = (Turn) childTree.getO();
+            Integer childValue = childTurn.getValue();
+            System.out.println("layer: " + (where + 1) + " value: " + childValue);
+            int knights = 0;
+
+            for (int i = 1; i < 9; i++) {
+                for (int k = 1; k < 9; k++) {
+                    if (childTurn.getBoard().getBoard()[i][k] == 12) {
+                        knights++;
+                    } 
+                }
+            }
+            System.out.println(knights);
+            
+            if (childValue == null) {
+                if (where % 2 == 0 && max == -99999999)  {
+                    bestTree = childTree;
+                    max = -90000;
+                    turn.setValue(-90000);
+                } else if (where % 2 == 1 && min == 99999999) {
+                    turn.setValue(90000);
+                    min = 90000;
+                    bestTree = childTree;
+                }
+            } else {
+                if (where % 2 == 0 && childValue > max) {
+                    max = childValue;
+                    bestTree = childTree;
+                    turn.setValue(childValue);
+                }
+                
+                if (where % 2 == 1 && childValue < min) {
+                    min = childValue;
+                    bestTree = childTree;
+                    turn.setValue(childValue);
+                }
+            }
         }
+        
+        return bestTree;
     }
     
     /**
@@ -292,14 +335,16 @@ public class ChessAi {
     public void allMoves(BetterTree tree, int whichPlayer) {
         for (int i = 1; i < 9; i++) {
             for (int j = 1; j < 9; j++) {
+                Turn turn = (Turn) tree.getO();
                 Coordinate cood = new Coordinate (j * 10 + i);
-                BetterList endCoods = logic.checkMove(cood, board, whichPlayer);
+                BetterList endCoods = logic.checkMove(cood, turn.getBoard(), whichPlayer);
                 
                 for (int k = 0; k < endCoods.size(); k++) {
-                    ChessBoard childBoard = new ChessBoard((ChessBoard) tree.getO1());
+                    
+                    ChessBoard childBoard = new ChessBoard(turn.getBoard());
                     int eaten = childBoard.movePiece(new Move(cood, ((Coordinate) endCoods.get(k))));
                     
-                    BetterTree child = new BetterTree(childBoard, eaten, new Move(cood, ((Coordinate) endCoods.get(k))));
+                    BetterTree child = new BetterTree(new Turn(childBoard, eaten, new Move(cood, ((Coordinate) endCoods.get(k)))));
                     tree.addChild(child);
                 }
             }
@@ -319,4 +364,21 @@ public class ChessAi {
         evaKing = creator.createKingMatrix();
         
     }
+
+    public void setChessTree(BetterTree chessTree) {
+        Turn turn = (Turn) chessTree.getO();
+        turn.setBoard(board);
+        
+        this.chessTree = chessTree;
+    }
+
+    public void setPlayer(int player) {
+        this.player = player;
+    }
+
+    public BetterTree getChessTree() {
+        return chessTree;
+    }
+    
+    
 }

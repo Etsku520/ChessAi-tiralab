@@ -23,8 +23,8 @@ public class ChessGame {
     public ChessGame(ChessBoard board) {
         this.board = board;
         this.logic = new ChessLogic();
-        this.bot0 = new ChessAi(new BetterTree(board, null, null), board, logic, 0);
-        this.bot1 = new ChessAi(new BetterTree(board, null, null), board, logic, 1);
+        this.bot0 = new ChessAi(new BetterTree(new Turn(board, 0, null)), board, logic, 0);
+        this.bot1 = new ChessAi(new BetterTree(new Turn(board, 0, null)), board, logic, 1);
     }
     
     /**
@@ -54,15 +54,21 @@ public class ChessGame {
     public int makeTurn(int turn) {
         logic.pawnQueens(board);
         int player = turn % 2;
-        Move move = null;
+        Move move;
+        int eaten;
         if (player == 0) {
             move = bot0.nextMove();
-            board.movePiece(move);
+            eaten = board.movePiece(move);
+            bot1.setChessTree(bot0.getChessTree());
         } else {
             move = bot1.nextMove();
-            board.movePiece(move);
+            eaten = board.movePiece(move);
         }
         System.out.println(move.getCoodB() + " to " + move.getCoodE());
+        
+        if (eaten == 6 || eaten == 16) {
+            return player;
+        }
         
         if (logic.checkMate(board, Math.abs(player - 1))) {
             return player;
@@ -82,7 +88,21 @@ public class ChessGame {
         logic.pawnQueens(board);
         int player = turn % 2;
         
-        board.movePiece(move);
+        int eaten = board.movePiece(move);
+        
+        if (eaten == 16) {
+            return player;
+        }
+        
+        for (int i = 0; i < bot0.getChessTree().getChildren().size(); i++) {
+            BetterTree newTree = (BetterTree) bot0.getChessTree().getChildren().get(i);
+            Turn turnValues = (Turn) newTree.getO();
+            if (turnValues.getMove().equals(move)) {
+                newTree.setParent(newTree);
+                bot0.setChessTree(newTree);
+                break;
+            }
+        }
         
         if (logic.checkMate(board, Math.abs(player - 1))) {
             return player;

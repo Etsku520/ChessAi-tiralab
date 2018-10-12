@@ -1,7 +1,6 @@
 ## Testit
-Tällä hetkellä käytännössä kaikki testit ovat metodien testausta.
-Testit on toteutettu junit:lla. Erillaisia syötteitä ei hirveänä ole jonka takia moni virheistä löytyy
-kun testaa itse toimivia osia ohjelmasta. Ja no testien toisto onnistuu junit:lla.
+Junitilla on tehty jonkin verran testejä, jotta saataisiin kaikki vaihtoehdot käytyä läpi taritaan todennäköisesti satoja testejä.
+Testeissä on testattu tietorakentaita ja logiikkaa. Kaikkien testien syötteet ovat melko sattuman varaisia, koska testeissä olen testannut yleistä toimivuutta, kun kaikkien yksityiskohtien testaamiseen menisi todella paljon aikaa.
 
 Ainut testin oloinen asia, jota ei tehty junit:lla oli testi siitä monta vuoroa peliä voin simuloida. 
 Ohjelma onnistui simuloimaan 4 vuoroa. Kun yritti 5 vuoroa, kesti se kauan ja lopulta tuli muistin ylivuoto.

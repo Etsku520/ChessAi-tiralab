@@ -1,6 +1,7 @@
 package chessaitiralab.chessai.tiralab.chess.userInterface;
 
 import chessaitiralab.chessai.tiralab.ai.ChessAi;
+import chessaitiralab.chessai.tiralab.benchmark.TreeAndMinMaxBenchmark;
 import chessaitiralab.chessai.tiralab.dataStructure.BetterList;
 import chessaitiralab.chessai.tiralab.chess.ChessBoard;
 import chessaitiralab.chessai.tiralab.chess.ChessGame;
@@ -35,6 +36,7 @@ public class UserInt {
             System.out.println("You can give the following commands now:\n"
                     + "s - for starting the game\n"
                     + "ai - to see 2 bots fighting (they will probably get stuck at somepoint)\n"
+                    + "tft - to test the time for making tree\n"
                     + "e - for exit\n");
 
             command = reader.nextLine().trim().toLowerCase();
@@ -51,6 +53,10 @@ public class UserInt {
                 startAiVsAi();
             }
 
+            else if (command.equals("tft")) {
+                timeForTree();
+            }
+            
             else {
                 System.out.println("\nTry again");
             }
@@ -191,6 +197,25 @@ public class UserInt {
         }
         System.out.println("   ---------------\n"
                 + "   a b c d e f g h");
+    }
+    
+    public void timeForTree() {
+        TreeAndMinMaxBenchmark bench = new TreeAndMinMaxBenchmark();
+        while (true) {
+            int depth;
+            System.out.println("How many layers or stop (I recommend starting with 3)?");
+            String command = reader.nextLine();
+            if (command.trim().toLowerCase().equals("stop")) break;
+            
+            try {
+                depth = Integer.parseInt(command);
+            }catch (Exception e) {
+                System.out.println("invalid input");
+                continue;
+            }
+            
+            bench.timing(depth);
+        }
     }
     
 }

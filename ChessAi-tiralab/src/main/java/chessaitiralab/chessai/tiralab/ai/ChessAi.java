@@ -224,16 +224,16 @@ public class ChessAi {
                 Turn childTurn = (Turn) childTree.getO();
                 int value = evaluate(childTree);
                 childTurn.setValue(value);
-                int knights = 0;
-                System.out.println("layer: " + (where + 1) + " value: " + value);
-                for (int i = 1; i < 9; i++) {
-                    for (int k = 1; k < 9; k++) {
-                        if (childTurn.getBoard().getBoard()[i][k] == 12) {
-                            knights++;
-                        } 
-                    }
-                }
-                System.out.println(knights);
+//                int knights = 0;
+//                System.out.println("layer: " + (where + 1) + " value: " + value);
+//                for (int i = 1; i < 9; i++) {
+//                    for (int k = 1; k < 9; k++) {
+//                        if (childTurn.getBoard().getBoard()[i][k] == 12) {
+//                            knights++;
+//                        } 
+//                    }
+//                }
+//                System.out.println(knights);
 
                 if (where % 2 == 0 && value > max) {
                     max = value;
@@ -285,17 +285,17 @@ public class ChessAi {
             makeTreeAndMinMax(childTree, depth ,where + 1);
             Turn childTurn = (Turn) childTree.getO();
             Integer childValue = childTurn.getValue();
-            System.out.println("layer: " + (where + 1) + " value: " + childValue);
-            int knights = 0;
-
-            for (int i = 1; i < 9; i++) {
-                for (int k = 1; k < 9; k++) {
-                    if (childTurn.getBoard().getBoard()[i][k] == 12) {
-                        knights++;
-                    } 
-                }
-            }
-            System.out.println(knights);
+//            System.out.println("layer: " + (where + 1) + " value: " + childValue);
+//            int knights = 0;
+//
+//            for (int i = 1; i < 9; i++) {
+//                for (int k = 1; k < 9; k++) {
+//                    if (childTurn.getBoard().getBoard()[i][k] == 12) {
+//                        knights++;
+//                    } 
+//                }
+//            }
+//            System.out.println(knights);
             
             if (childValue == null) {
                 if (where % 2 == 0 && max == -99999999)  {

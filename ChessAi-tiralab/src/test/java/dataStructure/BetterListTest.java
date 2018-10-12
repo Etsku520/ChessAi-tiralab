@@ -93,6 +93,6 @@ public class BetterListTest {
         list.add(67);
         list.add(34);
         
-        assertEquals("[12, 67, 34]", list.toString());
+        assertEquals("[1.(12), 2.(67), 3.(34)]", list.toString());
     }
 }

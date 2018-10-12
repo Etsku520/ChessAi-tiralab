@@ -58,7 +58,7 @@ public class ChessLogicTest {
         
         BetterList moves = logic.checkMove(cood, board, 1);
         
-        assertEquals("[b3, b4]", moves.toString());
+        assertEquals("[1.(b3), 2.(b4)]", moves.toString());
     }
     
     @Test
@@ -70,7 +70,7 @@ public class ChessLogicTest {
         
         BetterList moves = logic.checkMove(cood2, board, 1);
         
-        assertEquals("[c7, d6, d4, c3, a7, a3]", moves.toString());
+        assertEquals("[1.(c7), 2.(d6), 3.(d4), 4.(c3), 5.(a7), 6.(a3)]", moves.toString());
     }
     
     @Test
@@ -82,7 +82,7 @@ public class ChessLogicTest {
         
         BetterList moves = logic.checkMove(cood2, board, 1);
         
-        assertEquals("[h7, f7, f5, e4, d3, h5]", moves.toString());
+        assertEquals("[1.(h7), 2.(f7), 3.(f5), 4.(e4), 5.(d3), 6.(h5)]", moves.toString());
     }
     
     @Test
@@ -94,7 +94,7 @@ public class ChessLogicTest {
         
         BetterList moves = logic.checkMove(cood2, board, 1);
         
-        assertEquals("[b5, b6, b7, b3, c4, d4, e4, f4, g4, h4, a4]", moves.toString());
+        assertEquals("[1.(b5), 2.(b6), 3.(b7), 4.(b3), 5.(c4), 6.(d4), 7.(e4), 8.(f4), 9.(g4), 10.(h4), 11.(a4)]", moves.toString());
     }
     
     @Test
@@ -106,7 +106,7 @@ public class ChessLogicTest {
         
         BetterList moves = logic.checkMove(cood2, board, 1);
         
-        assertEquals("[c5, d6, e7, a5, a3, c3, b5, b6, b7, b3, c4, d4, e4, f4, g4, h4, a4]", moves.toString());
+        assertEquals("[1.(c5), 2.(d6), 3.(e7), 4.(a5), 5.(a3), 6.(c3), 7.(b5), 8.(b6), 9.(b7), 10.(b3), 11.(c4), 12.(d4), 13.(e4), 14.(f4), 15.(g4), 16.(h4), 17.(a4)]", moves.toString());
     }
     
     @Test
@@ -118,7 +118,7 @@ public class ChessLogicTest {
         
         BetterList moves = logic.checkMove(cood2, board, 1);
         
-        assertEquals("[c4, c5, a5, c3, a3, a4, b3, b5]", moves.toString());
+        assertEquals("[1.(c4), 2.(c5), 3.(a5), 4.(c3), 5.(a3), 6.(a4), 7.(b3), 8.(b5)]", moves.toString());
     }
     
     @Test

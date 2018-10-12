@@ -4,16 +4,18 @@ apuluokkia kordinaatti ja liike.
 
 ## Aika- ja tilavaativuus
 Aika hirvittävätlä näyttää, tekoäly tekee puuta kaikista liikkeistä joten sen aika vaativuus on luokkaa k^n, missä
-k esittää liikkeiden määrää ja n on kerroksien määrä. Kertoimia tulee melko hirveästi lisää, 
-koska ohjelma ei ole optimoinnista ikinä kuullutkaan. 
-Tällä hetkellä ohjelma pystyy simuloimaan 4 vuoroa eteenpäin ennen kuin jää jumiin.
+k esittää liikkeiden määrää ja n on kerroksien määrä. Aikaa tietenkin kuluu myös logiikassa, koska lauta käydään monta kertaa läpi, mutta se ei aikavaativuuteen juuri vaikuta
 
-Tilavaativuus on lähellä samaa, mutta vielä hirveämpi. Koska sen pitää ensinnäkin tallentaa puu 
-joka on saman kokoinen kuin aikavaativuus. Sen lisäksi jokaiseen solmuun on tallennettu oman tilanteen shakkilauta. 
-Muistaakseni oli vielä jotain joka söi muistia.
+
+Tilavaativuus on lähellä samaa. Koska sen pitää ensinnäkin tallentaa puu joka on saman kokoinen kuin aikavaativuus. Sen lisäksi jokaiseen solmuun on tallennettu oman tilanteen shakkilauta.
 
 ## Puutteet ja parannukset
-Työ on tällä hetkellä pelkkiä puutteita joten kitjoitan niistä myöhemmin.
+Työn optimointi olisi vielä mahdollista ja en edes saanut puiden uudelleen käyttöä toimimaan, koska jokin ohjelmassa sekosi pahasti.
+Botti söi minun omalla nappulalla, minun nappulani. En ole vieläkään varma mites se on edes missään tapauksessa mahdollista.
+Käyttöliittymä on myös vähän huono, mutta en tiedä onko sen parantamiseen kauheana aikaa.
+
+Viimeisenä on se, että testejä voisi olla enemmän. Jos saisin oikeasti kaiken testattua täydellisesti olisi se melko hyödyllistä, 
+mutta se tulisi viemään todennäköisesti vähintään 8 tuntia. Joittenkin kattavuus testien käyttöön otto voisi myös olla hyvä idea, mutta tulokset olisivat niin masentavia etten ole vielä siihen asti jaksanut mennä.
 
 ## Lähteet
 Arvoja shakkinappuloille ja sijainneille: 

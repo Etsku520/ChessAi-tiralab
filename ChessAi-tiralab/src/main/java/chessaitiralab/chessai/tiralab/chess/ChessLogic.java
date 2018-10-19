@@ -120,7 +120,9 @@ public class ChessLogic {
         } else {
             if (cood.getY() > 1) {
                 if (board.getBoard()[cood.getY() - 1][cood.getX()] == 0) {
-                    moveList.add(new Coordinate((cood.getY() - 1) + cood.getX() * 10));
+                    if (!checkYourCheck(new Move(cood, new Coordinate(cood.getY() - 1 + (cood.getX()) * 10)), board)) {
+                        moveList.add(new Coordinate((cood.getY() - 1) + cood.getX() * 10));
+                    }
                     if (cood.getY() == 7 && board.getBoard()[cood.getY() - 2][cood.getX()] == 0) {
                         if (!checkYourCheck(new Move(cood, new Coordinate((cood.getY() - 2) + (cood.getX()) * 10)), board)) {
                             moveList.add(new Coordinate((cood.getY() - 2) + cood.getX() * 10));
@@ -130,7 +132,7 @@ public class ChessLogic {
                 }
 
                 if (cood.getX() > 1) {
-                    if (board.getBoard()[cood.getY() + 1][cood.getX() - 1] < 10 && board.getBoard()[cood.getY() + 1][cood.getX() - 1] != 0) {
+                    if (board.getBoard()[cood.getY() - 1][cood.getX() - 1] < 10 && board.getBoard()[cood.getY() - 1][cood.getX() - 1] != 0) {
                         if (!checkYourCheck(new Move(cood, new Coordinate((cood.getY() - 1) + (cood.getX() - 1) * 10)), board)) {
                             moveList.add(new Coordinate((cood.getY() - 1) + (cood.getX() - 1) * 10));
                         }
@@ -138,7 +140,7 @@ public class ChessLogic {
                 }
 
                 if (cood.getX() < 8) {
-                    if (board.getBoard()[cood.getY() + 1][cood.getX() + 1] < 10 && board.getBoard()[cood.getY() + 1][cood.getX() + 1] != 0) {
+                    if (board.getBoard()[cood.getY() - 1][cood.getX() + 1] < 10 && board.getBoard()[cood.getY() - 1][cood.getX() + 1] != 0) {
                         if (!checkYourCheck(new Move(cood, new Coordinate((cood.getY() - 1) + (cood.getX() + 1) * 10)), board)) {
                             moveList.add(new Coordinate((cood.getY() - 1) + (cood.getX() + 1) * 10));
                         }

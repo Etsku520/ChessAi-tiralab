@@ -63,6 +63,7 @@ public class ChessGame {
         } else {
             move = bot1.nextMove();
             eaten = board.movePiece(move);
+            bot0.setChessTree(bot1.getChessTree());
         }
         System.out.println(move.getCoodB() + " to " + move.getCoodE());
         

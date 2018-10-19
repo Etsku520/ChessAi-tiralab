@@ -7,6 +7,7 @@ import chessaitiralab.chessai.tiralab.chess.Move;
 import chessaitiralab.chessai.tiralab.chess.Turn;
 import chessaitiralab.chessai.tiralab.dataStructure.BetterList;
 import chessaitiralab.chessai.tiralab.dataStructure.BetterTree;
+import java.util.Random;
 
 /**
  * This will be a glorious AI.
@@ -17,6 +18,7 @@ public class ChessAi {
     BetterTree chessTree;
     ChessBoard board;
     ChessLogic logic;
+    int nothingEaten;
     int[][] evaKing;
     int[][] evaRook;
     int[][] evaQueen;
@@ -38,6 +40,7 @@ public class ChessAi {
         this.board = board;
         this.logic = logic;
         this.player = player;
+        this.nothingEaten = 0;
         
          
         evaKing = new int[9][9];
@@ -55,14 +58,25 @@ public class ChessAi {
      * @return move
      */
     public Move nextMove() {
-        chessTree = new BetterTree(new Turn(board, 0, null));
-        BetterTree bestTree = makeTreeAndMinMax(chessTree, 3, 0);
+        BetterTree bestTree = makeTreeAndMinMax(chessTree, 4, 0);
+        int random = new Random().nextInt(chessTree.getChildren().size());
+        
+        Turn turn = (Turn) bestTree.getO();
+        turn.setBoard(board);
+        
+        if (board.getBoard()[turn.getMove().getCoodE().getY()][turn.getMove().getCoodE().getX()] == 0) {
+            nothingEaten++;
+        } else {
+            nothingEaten = 0;
+        }
+        
+        if (nothingEaten % 100 == 0 && nothingEaten != 0) {
+            bestTree = (BetterTree) chessTree.getChildren().get(random);
+            turn = (Turn) bestTree.getO();
+        }
         
         chessTree = bestTree;
         chessTree.setParent(chessTree);
-        Turn turn = (Turn) chessTree.getO();
-        turn.setBoard(board);
-        
         System.out.println("best: " + turn.getValue());
         
         
@@ -224,16 +238,6 @@ public class ChessAi {
                 Turn childTurn = (Turn) childTree.getO();
                 int value = evaluate(childTree);
                 childTurn.setValue(value);
-//                int knights = 0;
-//                System.out.println("layer: " + (where + 1) + " value: " + value);
-//                for (int i = 1; i < 9; i++) {
-//                    for (int k = 1; k < 9; k++) {
-//                        if (childTurn.getBoard().getBoard()[i][k] == 12) {
-//                            knights++;
-//                        } 
-//                    }
-//                }
-//                System.out.println(knights);
 
                 if (where % 2 == 0 && value > max) {
                     max = value;
@@ -285,17 +289,6 @@ public class ChessAi {
             makeTreeAndMinMax(childTree, depth ,where + 1);
             Turn childTurn = (Turn) childTree.getO();
             Integer childValue = childTurn.getValue();
-//            System.out.println("layer: " + (where + 1) + " value: " + childValue);
-//            int knights = 0;
-//
-//            for (int i = 1; i < 9; i++) {
-//                for (int k = 1; k < 9; k++) {
-//                    if (childTurn.getBoard().getBoard()[i][k] == 12) {
-//                        knights++;
-//                    } 
-//                }
-//            }
-//            System.out.println(knights);
             
             if (childValue == null) {
                 if (where % 2 == 0 && max == -99999999)  {

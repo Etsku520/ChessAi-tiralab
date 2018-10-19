@@ -35,6 +35,17 @@
                 <artifactId>pitest-maven</artifactId>
                 <version>1.1.8</version>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>chessaitiralab.chessai.tiralab.main.Chess</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 </project>

@@ -81,7 +81,7 @@ public class UserInt {
             
             if(turn % 2 == 1) {
                 while (true) {
-                    System.out.println("What do you want to move? (for example 'a2')");
+                    System.out.println("What do you want to move? (for example 'a2')\n'stop' stops the game");
                     String coordinate = reader.nextLine();
                     String test1 = "abcdefgh";
                     String test2 = "12345678";

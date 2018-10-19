@@ -23,23 +23,6 @@ public class Chess {
         ChessBoard board = new ChessBoard();
         Scanner reader = new Scanner(System.in);
         UserInt inter = new UserInt(board, reader);
-        Coordinate cood = new Coordinate(62);
-        
-        BetterList list = new BetterList();
-        for (int i = 0; i < 20; i++) {
-            list.add(i);
-        }
-        list.add(1);
-        list.add(4);
-        list.add(6);
-        list.add(7);
-        list.add(2);
-        list.remove(2);
-        System.out.println(list.get(2));
-        System.out.println("Size: " + list.size());
-        System.out.println(list.toString());
-        System.out.println(cood);
-        
         
         inter.start();
     }

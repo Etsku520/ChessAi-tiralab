@@ -45,14 +45,14 @@ public class Move {
 
     @Override
     public boolean equals(Object obj) {
-        if (!obj.getClass().equals(this)) {
+        if (!obj.getClass().equals(this.getClass())) {
             return false;
         }
         
         Move compare = (Move) obj;
         
-        return compare.coodB.toString().equals(this.coodB.toString()) 
-                && compare.coodE.toString().equals(this.coodE.toString());
+        return compare.getCoodB().toString().equals(this.coodB.toString()) 
+                && compare.getCoodE().toString().equals(this.coodE.toString());
     }
     
     

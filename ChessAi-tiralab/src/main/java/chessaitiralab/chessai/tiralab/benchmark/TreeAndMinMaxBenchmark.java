@@ -12,7 +12,8 @@ import chessaitiralab.chessai.tiralab.chess.Turn;
 import chessaitiralab.chessai.tiralab.dataStructure.BetterTree;
 
 /**
- *
+ * Class that is used for seeing how long it takes to make a tree.
+ * 
  * @author hceetu
  */
 public class TreeAndMinMaxBenchmark {

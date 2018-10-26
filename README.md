@@ -23,3 +23,5 @@ Tämän jälkeen voit aloittaa shakin valikon ohjeiden mukaan.
 [Viikkoraportti5](Documentation/viikkoraportti5.md)
 
 [Viikkoraportti6](Documentation/viikkoraportti6.md)
+
+Javadocia voi mennä etsimään tuolta ChessAi-tiralab/apidocs

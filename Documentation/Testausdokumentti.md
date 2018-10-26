@@ -1,6 +1,6 @@
 ## Testit
-Junitilla on tehty jonkin verran testejä, jotta saataisiin kaikki vaihtoehdot käytyä läpi taritaan todennäköisesti satoja testejä.
-Testeissä on testattu tietorakentaita ja logiikkaa. Kaikkien testien syötteet ovat melko sattuman varaisia, koska testeissä olen testannut yleistä toimivuutta, kun kaikkien yksityiskohtien testaamiseen menisi todella paljon aikaa.
+Junitilla on tehty testejä, joilla selvitetään ohjelman toiminnan toimivuutta.
+Testeissä on testattu tietorakentaita, logiikkaa ja peliin travittuja luokkia kuten lauta. Kaikkien testien syötteet ovat melko sattuman varaisia, koska testeissä olen testannut yleistä toimivuutta.
 
 Olen myös tehnyt testauksia siitä kuinka paljon aikaa menee puun tekemiseen (ja samalla liikeiden arviointiin).
 Ohjelma onnistui simuloimaan 4 vuoroa 5270 millisekunnissa, 3 vuoroa 284 millisekunnissa, 2 vuoroa vei 49 millisekunttia ja 1 vuoro noin 12 ms. Kun yritti 5 vuoroa, kesti se kauan ja lopulta tuli muistin ylivuoto.

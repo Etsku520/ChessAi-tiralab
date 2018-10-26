@@ -10,7 +10,8 @@ Tosin tässä kaikki puut on tehty alkaen laudan alkutilanteesta.
 ![Test](Pictures/time_for_tree.png)
 
 Myös itse pelissä näkyy kuinka kauan tekoäly mietti liikettään.
-joka on yleensä pidempi, vaikka koko puuta ei tarvitsekkaan tehdä uudestaan
+joka on yleensä pidempi, vaikka koko puuta ei tarvitsekkaan tehdä uudestaan.
+
 ![Test2](Pictures/time_for_move1.png)
 ![Test3](Pictures/time_for_move2.png)
 ![Test4](Pictures/time_for_move3.png)

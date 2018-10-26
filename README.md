@@ -2,6 +2,7 @@
 ## Käyttöohje
 Ohjelma käynnistyy komennolla
 > java -jar ChessAi-tiralab-2.0
+
 Tämän jälkeen voit aloittaa shakin valikon ohjeiden mukaan.
 
 ## Dokumentaatiota

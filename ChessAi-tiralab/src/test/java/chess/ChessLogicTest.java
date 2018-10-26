@@ -109,6 +109,7 @@ public class ChessLogicTest {
         assertEquals("[1.(c5), 2.(d6), 3.(e7), 4.(a5), 5.(a3), 6.(c3), 7.(b5), 8.(b6), 9.(b7), 10.(b3), 11.(c4), 12.(d4), 13.(e4), 14.(f4), 15.(g4), 16.(h4), 17.(a4)]", moves.toString());
     }
     
+    
     @Test
     public void chekcKingTest() {
         Coordinate cood1 = new Coordinate("e1");

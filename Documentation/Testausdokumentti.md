@@ -7,3 +7,5 @@ Ohjelma onnistui simuloimaan 4 vuoroa noin 4500 millisekunnissa, 3 vuoroa noin 4
 aika testin voi helposti tehdä, nyt jo käyttöliittymän kautta ohjelmassa.
 
 p.s. en ihan varannut tarpeeksi aikaa dokumentaation tekemiseen
+
+![Test](Pictures/time_for_tree.png)

@@ -1,21 +1,20 @@
 ## Yleisrakenne
-Ohjelmaan kuuluu shakki, käyttöliittymä, tietorakenteet ja tekoäly. Shakkiin sisältyy muun muassa lauta, logiikka ja 
-apuluokkia kordinaatti ja liike.
+Ohjelmaan kuuluu shakki, joka sisältää kaikki ne luokat jotka liittyvät shakin toimintaan kuten sen logiikka ja lauta, käyttöliittymä, joka sisältää käyttöliittymän, tietorakenteet, joka sisältää kaikki itse tehdyt tietorakenteet ja tekoäly, joka sisältää tekoälyn ja apuluokan joka tekee arvointia vatrten matriiseja. Sen lisäksi on vielä main, sekä benchmark, jonne laitoin aika testejä ohjelmaa varten.
 
 ## Aika- ja tilavaativuus
-Aika hirvittävätlä näyttää, tekoäly tekee puuta kaikista liikkeistä joten sen aika vaativuus on luokkaa k^n, missä
-k esittää liikkeiden määrää ja n on kerroksien määrä. Aikaa tietenkin kuluu myös logiikassa, koska lauta käydään monta kertaa läpi, mutta se ei aikavaativuuteen juuri vaikuta
+Aikavaativuus on melko suuri, tekoäly tekee puuta kaikista liikkeistä joten sen aika vaativuus on luokkaa k^n, missä
+k esittää liikkeiden määrää ja n on kerroksien määrä. k:n kokoa ei oikein voi sanoa, sillä se vaihtuu koko ajan jopa kerroksien välillä ja se voi joko olla todella suuri tai toisessa ääritapauksessa jopa 0. Aikaa tietenkin kuluu myös logiikassa, koska lauta käydään monta kertaa läpi, mutta se ei aikavaativuuden luokkaan juuri vaikuta.
 
 
-Tilavaativuus on lähellä samaa. Koska sen pitää ensinnäkin tallentaa puu joka on saman kokoinen kuin aikavaativuus. Sen lisäksi jokaiseen solmuun on tallennettu oman tilanteen shakkilauta.
+Tilavaativuus on lähellä samaa. Koska sen pitää tallentaa puu, jossa on k^n kappaetta solmuja. Sen lisäksi jokaiseen solmuun on tallennettu oman tilanteen shakkilauta.
 
 ## Puutteet ja parannukset
-Työn optimointi olisi vielä mahdollista ja en edes saanut puiden uudelleen käyttöä toimimaan, koska jokin ohjelmassa sekosi pahasti.
-Botti söi minun omalla nappulalla, minun nappulani. En ole vieläkään varma mites se on edes missään tapauksessa mahdollista.
-Käyttöliittymä on myös vähän huono, mutta en tiedä onko sen parantamiseen kauheana aikaa.
+Työn optimointi olisi vielä mahdollista. En esimerkiksi ehtinyt käyttää optimointi menetelmää nimeltä "Alpha-beta pruning", jossa puita ei aina tarvitsisi, tehdä loppuun asti.
+Käyttöliittymä voisi aina parantaa, mutta tekstikäyttöliittymäksi se on mielestäni ihan hyvä.
 
+Tekoälyä voisi parantaa vielä monella tavalla. Sen loppu peli on kauheaa, sillä se ei näe tarpeeksi pitkälle, että se osaisi siirtää nappuloita toiselta puolelta lautaa lähemmäs vihollisten kuningasta. Tämä yleensä johtaa kahden tekoälyn välillä tilanteeseen, jossa ne jäävät pyörimään paikoilleen. Tekoäly on myös todella helppo päihittää jos tietää mitään valmiita strategioita, sillä botti ei kauhean pitkälle osaa ennustaa.
 Viimeisenä on se, että testejä voisi olla enemmän. Jos saisin oikeasti kaiken testattua täydellisesti olisi se melko hyödyllistä, 
-mutta se tulisi viemään todennäköisesti vähintään 8 tuntia. Joittenkin kattavuus testien käyttöön otto voisi myös olla hyvä idea, mutta tulokset olisivat niin masentavia etten ole vielä siihen asti jaksanut mennä.
+mutta testien tekeminen vie todella paljon aikaa ja tekoälyssä en edes tiedä mitä testaisin. 
 
 ## Lähteet
 Arvoja shakkinappuloille ja sijainneille: 

@@ -58,7 +58,11 @@ public class ChessAi {
      * @return move
      */
     public Move nextMove() {
+        long start = System.nanoTime();
         BetterTree bestTree = makeTreeAndMinMax(chessTree, 4, 0);
+        long elapsedTime = System.nanoTime() - start;   
+        System.out.println((elapsedTime/1000000l) + "ms");
+        
         int random = new Random().nextInt(chessTree.getChildren().size());
         
         Turn turn = (Turn) bestTree.getO();
